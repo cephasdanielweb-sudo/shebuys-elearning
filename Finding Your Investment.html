@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Finding Your Investment — She Buys Properties</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   SHE BUYS PROPERTIES — Finding Your Investment
+   Brand: Pink #FE95D0 / Teal #26A69A / Gold #C9906E / Navy #1A1A2E
+   ============================================================ */
+:root{
+  --pink:#FE95D0;
+  --pink-deep:#E96FB5;
+  --teal:#26A69A;
+  --teal-deep:#1E857B;
+  --gold:#C9906E;
+  --navy:#1A1A2E;
+  --navy-2:#232340;
+  --cream:#FDF6FA;
+  --blush:#FEE8F5;
+  --charcoal:#2C2C2C;
+  --mid:#6B6B6B;
+  --light-pink:#FFC8E8;
+  --light-teal:#B2DFDB;
+  --pale-pink:#FFD6EF;
+  --line:rgba(254,149,208,0.22);
+  --shadow-card:0 2px 10px rgba(0,0,0,0.04);
+  --shadow-hover:0 12px 34px rgba(254,149,208,0.18);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--charcoal);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{margin:0;font-weight:600;}
+p{margin:0;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+input,textarea{font-family:inherit;}
+img{display:block;max-width:100%;}
+::selection{background:var(--pink);color:#fff;}
+
+/* ---------- Utility ---------- */
+.serif{font-family:var(--serif);}
+.italic-pink{font-family:var(--serif);font-style:italic;color:var(--pink-deep);font-weight:600;}
+.eyebrow{
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:0.68rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--pink-deep);
+}
+.eyebrow.on-dark{color:var(--pink);}
+.eyebrow.gold{color:var(--gold);}
+.wrap{max-width:1120px;margin:0 auto;padding:0 40px;}
+
+/* ---------- Brand lockup ---------- */
+.lockup{display:flex;align-items:center;gap:12px;}
+.lockup .mono{
+  display:flex;flex-direction:column;line-height:0.9;
+}
+.lockup .mono .a{
+  font-family:var(--serif);font-weight:700;letter-spacing:0.02em;
+  font-size:1.18rem;color:var(--navy);
+}
+.lockup .mono .b{
+  font-family:var(--sans);font-weight:600;font-size:0.5rem;
+  letter-spacing:0.34em;text-transform:uppercase;color:var(--mid);margin-top:3px;
+}
+.lockup.on-dark .mono .a{color:#fff;}
+.lockup.on-dark .mono .b{color:var(--pale-pink);}
+.roofmark{flex:0 0 auto;}
+
+/* ---------- Sticky progress header ---------- */
+#progress-header{
+  position:fixed;top:0;right:0;z-index:120;
+  background:rgba(253,246,250,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom-left-radius:14px;
+  box-shadow:0 4px 20px rgba(26,26,46,0.06);
+  padding:14px 22px 12px;
+  display:none;
+  min-width:200px;
+}
+#progress-header.show{display:block;}
+#progress-header .ph-label{
+  font-family:var(--sans);font-weight:600;font-size:0.66rem;
+  letter-spacing:0.16em;text-transform:uppercase;color:var(--navy);
+  display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+}
+#progress-header .ph-label .pct{color:var(--pink-deep);}
+#progress-track{
+  height:3px;background:var(--line);border-radius:3px;margin-top:9px;overflow:hidden;
+}
+#progress-fill{
+  height:100%;width:0;background:var(--pink);border-radius:3px;
+  transition:width .6s cubic-bezier(.4,0,.2,1);
+}
+
+/* ---------- Section visibility ---------- */
+.screen{display:none;animation:fadeUp .6s ease both;}
+.screen.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){
+  .screen{animation:none;}
+  html{scroll-behavior:auto;}
+}
+
+/* ============================================================
+   OPENING SCREEN
+   ============================================================ */
+#screen-open{min-height:100vh;}
+.open-grid{display:grid;grid-template-columns:1fr 1.12fr;min-height:100vh;}
+.open-left{
+  background:var(--navy);color:#fff;padding:56px 56px 44px;
+  display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;
+}
+.open-left .rooflines{
+  position:absolute;inset:0;opacity:0.5;pointer-events:none;
+}
+.open-left .ol-content{position:relative;z-index:2;}
+.brand-block{display:flex;flex-direction:column;gap:18px;}
+.brand-block .sbp-stack .glyph{margin-bottom:18px;}
+.brand-block .sbp-word{
+  font-family:var(--serif);font-weight:700;font-size:3.2rem;line-height:0.92;color:#fff;letter-spacing:0.01em;
+}
+.brand-block .sbp-sub{
+  font-family:var(--sans);font-weight:600;font-size:0.62rem;letter-spacing:0.34em;
+  text-transform:uppercase;color:var(--pale-pink);margin-top:14px;
+}
+.open-left .brand-quote{
+  font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.62rem;line-height:1.4;
+  color:#fff;max-width:23ch;position:relative;z-index:2;
+}
+.open-left .brand-quote .em{color:var(--pink);}
+.open-left .est{
+  font-family:var(--sans);font-weight:600;font-size:0.62rem;letter-spacing:0.24em;
+  text-transform:uppercase;color:rgba(255,255,255,0.55);position:relative;z-index:2;
+}
+.open-right{
+  background:var(--cream);padding:48px 64px;
+  display:flex;flex-direction:column;justify-content:space-between;position:relative;
+}
+.open-right .or-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;}
+.open-right .or-tagline{
+  font-family:var(--serif);font-style:italic;font-size:1.02rem;color:var(--mid);text-align:right;max-width:18ch;
+}
+.open-right .or-center{padding:38px 0;max-width:30ch;}
+.open-headline{
+  font-family:var(--serif);font-weight:700;font-size:4.1rem;line-height:0.98;color:var(--navy);letter-spacing:-0.01em;
+}
+.open-headline .em{display:block;font-style:italic;color:var(--pink-deep);}
+.open-sub{
+  font-size:1.04rem;color:var(--charcoal);line-height:1.65;margin-top:22px;max-width:42ch;
+}
+.open-stats{display:flex;gap:38px;margin-top:34px;flex-wrap:wrap;}
+.open-stats .stat{max-width:13ch;}
+.open-stats .stat .n{font-family:var(--serif);font-weight:600;font-size:1.5rem;color:var(--navy);line-height:1;}
+.open-stats .stat .l{font-size:0.74rem;color:var(--mid);margin-top:7px;line-height:1.4;}
+.open-right .or-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;}
+.welcome-note{
+  font-family:var(--serif);font-style:italic;font-size:0.92rem;color:var(--pink-deep);text-align:right;
+}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:11px;
+  font-family:var(--sans);font-weight:700;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:16px 30px;border-radius:8px;transition:all .22s ease;line-height:1;
+}
+.btn .arrow{transition:transform .22s ease;}
+.btn:hover .arrow{transform:translateX(4px);}
+.btn-primary{background:var(--navy);color:var(--pink);}
+.btn-primary:hover{background:#000;box-shadow:0 10px 26px rgba(26,26,46,0.22);}
+.btn-pink{background:var(--pink);color:var(--navy);}
+.btn-pink:hover{background:var(--pink-deep);color:#fff;}
+.btn-ghost{border:1.5px solid var(--pink);color:var(--pink-deep);background:transparent;}
+.btn-ghost:hover{background:var(--pink);color:var(--navy);}
+.btn-ghost.on-dark{color:var(--pink);border-color:rgba(254,149,208,0.5);}
+.btn-ghost.on-dark:hover{background:var(--pink);color:var(--navy);}
+.btn-lg{font-size:0.86rem;padding:19px 38px;}
+.btn[disabled]{opacity:0.4;cursor:not-allowed;}
+.btn.locked{background:var(--teal);color:#fff;}
+
+/* ============================================================
+   MODULE SCAFFOLD
+   ============================================================ */
+.module{padding-bottom:90px;}
+.hero-banner{
+  background:var(--navy);color:#fff;padding:64px 0 60px;position:relative;overflow:hidden;
+}
+.hero-banner .rooflines{position:absolute;inset:0;opacity:0.4;pointer-events:none;}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:center;}
+.hero-illus{display:flex;justify-content:flex-end;align-items:center;}
+.hero-banner .mod-label{margin-bottom:18px;}
+.hero-title{
+  font-family:var(--serif);font-weight:700;font-size:2.9rem;line-height:1.05;color:#fff;max-width:18ch;letter-spacing:-0.005em;
+}
+.hero-title .em{font-style:italic;color:var(--pink);}
+.hero-sub{font-size:0.98rem;color:rgba(255,255,255,0.78);line-height:1.65;margin-top:18px;max-width:46ch;}
+
+/* ---------- Charlotte quote card ---------- */
+.charlotte{
+  background:var(--navy);border-radius:12px;border-left:3px solid var(--pink);
+  padding:24px 26px;display:flex;gap:20px;align-items:flex-start;
+}
+.charlotte.intro{background:var(--navy-2);}
+.charlotte .photo{
+  flex:0 0 auto;width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:50% 18%;
+  border:2px solid rgba(254,149,208,0.4);
+}
+.charlotte.intro .photo{width:120px;height:120px;}
+.charlotte .c-body{flex:1;min-width:0;}
+.charlotte .c-name{font-family:var(--serif);font-style:italic;font-weight:600;font-size:0.92rem;color:var(--pink);}
+.charlotte .c-tag{font-family:var(--serif);font-style:italic;font-size:0.78rem;color:rgba(254,149,208,0.7);margin-top:1px;margin-bottom:11px;}
+.charlotte .c-quote{font-size:0.94rem;color:rgba(255,255,255,0.88);line-height:1.78;}
+.charlotte .c-quote em,.charlotte .c-quote .em{font-family:var(--serif);font-style:italic;font-weight:600;color:var(--pink);font-size:1.04em;}
+.charlotte .c-quote b,.charlotte .c-quote .fact{font-weight:600;color:#fff;font-style:normal;font-family:var(--sans);}
+
+/* ---------- Cards & section bits ---------- */
+.section-title{font-family:var(--serif);font-weight:600;font-size:1.7rem;color:var(--navy);}
+.section-title .em{font-style:italic;color:var(--pink-deep);}
+.lead{font-size:0.98rem;color:var(--charcoal);line-height:1.6;}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-card);
+}
+.cta-row{display:flex;justify-content:flex-end;margin-top:48px;}
+
+/* ---------- Module 1: intake ---------- */
+.m1-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;margin-top:-34px;position:relative;z-index:5;}
+.intake-card{background:#fff;border-radius:14px;box-shadow:0 14px 40px rgba(26,26,46,0.10);padding:34px 34px 30px;border:1px solid var(--line);}
+.field{margin-bottom:26px;}
+.field:last-child{margin-bottom:0;}
+.field .f-num{font-family:var(--sans);font-weight:700;font-size:0.66rem;letter-spacing:0.16em;color:var(--pink-deep);text-transform:uppercase;}
+.field .f-q{font-family:var(--serif);font-size:1.28rem;color:var(--navy);margin:5px 0 14px;line-height:1.25;}
+.text-input{
+  width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:9px;
+  font-size:1rem;color:var(--charcoal);background:#fff;transition:border-color .2s;
+}
+.text-input:focus{outline:none;border-color:var(--pink);}
+.text-input::placeholder{color:#bbb;}
+.opt-group{display:flex;flex-wrap:wrap;gap:10px;}
+.opt{
+  padding:12px 17px;border:1.5px solid var(--line);border-radius:9px;background:#fff;
+  font-size:0.9rem;font-weight:500;color:var(--charcoal);transition:all .18s;text-align:left;
+}
+.opt:hover{border-color:var(--pink);}
+.opt.sel{background:var(--blush);border-color:var(--pink-deep);color:var(--navy);font-weight:600;}
+.opt.sel::before{content:"✓ ";color:var(--teal);font-weight:700;}
+
+/* risk slider */
+.risk-wrap{padding-top:4px;}
+.risk-labels{display:flex;justify-content:space-between;font-size:0.74rem;color:var(--mid);font-weight:500;margin-bottom:8px;}
+.risk-readout{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--pink-deep);text-align:center;margin-top:12px;min-height:1.4em;}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:var(--line);outline:none;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:2.5px solid var(--pink);box-shadow:0 2px 8px rgba(254,149,208,0.4);cursor:pointer;}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:2.5px solid var(--pink);box-shadow:0 2px 8px rgba(254,149,208,0.4);cursor:pointer;}
+
+/* drag & drop */
+.dnd-section{margin-top:40px;}
+.dnd-grid{display:grid;grid-template-columns:0.85fr 1.4fr;gap:30px;margin-top:22px;}
+.dnd-pool,.dnd-zone{border-radius:12px;padding:18px;}
+.dnd-pool{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-card);}
+.dnd-pool h4,.dnd-zones h4{font-family:var(--sans);font-weight:700;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:14px;}
+.dnd-pool h4{color:var(--navy);}
+.chip{
+  background:#fff;border:1px solid var(--line);border-left:3px solid var(--pink);border-radius:8px;
+  padding:11px 14px;margin-bottom:10px;font-size:0.86rem;font-weight:500;color:var(--charcoal);
+  cursor:grab;transition:all .15s;user-select:none;display:flex;align-items:center;gap:8px;
+}
+.chip:last-child{margin-bottom:0;}
+.chip:hover{box-shadow:0 4px 14px rgba(254,149,208,0.2);border-left-color:var(--pink-deep);}
+.chip.dragging{opacity:0.4;}
+.chip .grip{color:var(--light-pink);font-size:1rem;line-height:1;}
+.dnd-zones{display:flex;flex-direction:column;gap:16px;}
+.dnd-zone{min-height:84px;border:2px dashed var(--line);transition:all .18s;background:rgba(255,255,255,0.5);}
+.dnd-zone.over{border-color:var(--pink);background:var(--blush);}
+.dnd-zone .zone-head{display:flex;align-items:center;gap:9px;margin-bottom:10px;}
+.dnd-zone .zone-pill{font-family:var(--sans);font-weight:700;font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;padding:5px 11px;border-radius:20px;}
+.dnd-zone .zone-note{font-size:0.68rem;color:var(--mid);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;}
+.zone-must .zone-pill{background:var(--navy);color:var(--pink);}
+.zone-like .zone-pill{background:var(--pink);color:var(--navy);}
+.zone-dont .zone-pill{background:#eadfe6;color:var(--mid);}
+.dnd-zone .chip{margin-bottom:8px;cursor:grab;}
+.zone-items{display:flex;flex-direction:column;gap:8px;min-height:30px;}
+
+/* ============================================================
+   MODULE 2: numbers
+   ============================================================ */
+.m2-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:38px;align-items:start;}
+.slider-block{margin-bottom:34px;}
+.slider-block .sb-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;}
+.slider-block .sb-label{font-family:var(--sans);font-weight:600;font-size:0.92rem;color:var(--navy);display:flex;align-items:center;gap:9px;}
+.slider-block .sb-val{font-family:var(--serif);font-weight:600;font-size:1.55rem;color:var(--pink-deep);}
+.slider-block .sb-sub{font-size:0.82rem;color:var(--mid);line-height:1.5;margin:9px 0 14px;max-width:42ch;}
+.live-panel{background:var(--navy);border-radius:14px;padding:30px 30px 26px;color:#fff;}
+.live-panel .lp-head{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.live-dot{width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(38,166,154,0.6);animation:pulse 2s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(38,166,154,0.55);}70%{box-shadow:0 0 0 8px rgba(38,166,154,0);}100%{box-shadow:0 0 0 0 rgba(38,166,154,0);}}
+.live-panel .lp-title{font-family:var(--sans);font-weight:700;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--pale-pink);}
+.range-card{background:rgba(255,255,255,0.05);border-radius:10px;padding:16px 18px;margin-bottom:13px;border:1px solid rgba(255,255,255,0.08);}
+.range-card.hot{border:1.5px solid var(--pink);background:rgba(254,149,208,0.08);}
+.range-card .rc-label{font-family:var(--sans);font-weight:700;font-size:0.64rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--pale-pink);}
+.range-card.hot .rc-label{color:var(--pink);}
+.range-card .rc-val{font-family:var(--serif);font-weight:600;font-size:1.85rem;color:#fff;line-height:1.1;margin:5px 0 4px;}
+.range-card .rc-note{font-size:0.76rem;color:rgba(255,255,255,0.62);line-height:1.5;}
+.range-card .rc-note .gold{color:var(--gold);font-style:italic;font-family:var(--serif);font-size:1.02em;}
+.range-card .rc-implies{font-size:0.74rem;color:var(--teal);font-weight:600;margin-top:6px;}
+
+/* ============================================================
+   MODULE 3: wants walk
+   ============================================================ */
+.m3-grid{display:grid;grid-template-columns:280px 1fr;gap:40px;margin-top:38px;align-items:start;}
+.floorplan-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;position:sticky;top:96px;box-shadow:var(--shadow-card);}
+.floorplan-card .you-here{font-family:var(--sans);font-weight:700;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--pink-deep);margin-bottom:12px;}
+.room-list{list-style:none;padding:0;margin:18px 0 0;}
+.room-list li{padding:9px 0;border-top:1px solid var(--line);font-size:0.9rem;color:var(--mid);font-weight:500;display:flex;align-items:center;gap:9px;cursor:pointer;transition:color .15s;}
+.room-list li:hover{color:var(--navy);}
+.room-list li.active{font-family:var(--serif);font-style:italic;font-weight:600;color:var(--pink-deep);font-size:1.04rem;}
+.room-list li.done .rl-dot{background:var(--teal);border-color:var(--teal);}
+.room-list .rl-dot{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--line);flex:0 0 auto;}
+.room-list li.active .rl-dot{background:var(--pink);border-color:var(--pink);}
+.room-stage .room-title{font-family:var(--serif);font-weight:600;font-size:2.1rem;color:var(--navy);}
+.room-stage .room-title .em{font-style:italic;color:var(--pink-deep);}
+.room-scene{font-family:var(--serif);font-style:italic;font-size:1.18rem;color:var(--mid);line-height:1.55;margin:12px 0 22px;max-width:52ch;}
+.room-sketch{background:var(--blush);border-radius:12px;padding:24px;margin-bottom:24px;display:flex;justify-content:center;}
+.feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.feature-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:18px;transition:all .18s;}
+.feature-card .fc-icon{width:40px;height:40px;border-radius:9px;background:var(--blush);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.feature-card .fc-name{font-family:var(--sans);font-weight:600;font-size:0.98rem;color:var(--navy);}
+.feature-card .fc-desc{font-size:0.8rem;color:var(--mid);line-height:1.5;margin:5px 0 14px;}
+.react-row{display:flex;gap:7px;}
+.react-btn{flex:1;padding:9px 6px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-size:0.72rem;font-weight:600;color:var(--mid);transition:all .15s;display:flex;align-items:center;justify-content:center;gap:5px;}
+.react-btn:hover{border-color:var(--pink);}
+.react-btn.sel.love{background:var(--pink);border-color:var(--pink);color:var(--navy);}
+.react-btn.sel.nice{background:var(--gold);border-color:var(--gold);color:#fff;}
+.react-btn.sel.skip{background:#eadfe6;border-color:#ddd;color:var(--mid);}
+.room-nav{display:flex;justify-content:space-between;margin-top:28px;}
+
+/* ============================================================
+   MODULE 4: strategy
+   ============================================================ */
+.dots{display:flex;gap:10px;justify-content:center;margin:34px 0 30px;}
+.dots .dot{width:11px;height:11px;border-radius:50%;background:var(--line);transition:all .25s;}
+.dots .dot.done{background:var(--teal);}
+.dots .dot.cur{background:var(--pink);transform:scale(1.35);}
+.q-card{max-width:760px;margin:0 auto;}
+.q-card .q-step{text-align:center;}
+.q-card .q-text{font-family:var(--serif);font-weight:600;font-size:1.85rem;color:var(--navy);text-align:center;line-height:1.2;margin:8px auto 26px;max-width:24ch;}
+.q-options{display:flex;flex-direction:column;gap:12px;max-width:560px;margin:0 auto;}
+.q-opt{padding:16px 20px;border:1.5px solid var(--line);border-radius:10px;background:#fff;font-size:0.96rem;font-weight:500;color:var(--charcoal);text-align:left;transition:all .16s;}
+.q-opt:hover{border-color:var(--pink);transform:translateY(-1px);box-shadow:var(--shadow-card);}
+.q-opt.sel{background:var(--blush);border-color:var(--pink-deep);color:var(--navy);font-weight:600;}
+.strat-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:820px;margin:30px auto 0;}
+.strat-cell{background:#fff;border:1px solid var(--line);border-radius:11px;padding:18px;}
+.strat-cell .sc-k{font-family:var(--sans);font-weight:700;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--pink-deep);}
+.strat-cell .sc-v{font-family:var(--serif);font-size:1.12rem;color:var(--navy);margin-top:6px;line-height:1.25;}
+
+/* ============================================================
+   MODULE 5: tour
+   ============================================================ */
+.tour-counter{font-family:var(--sans);font-weight:700;font-size:0.74rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);}
+.prop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:30px;}
+.prop-card{background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;box-shadow:var(--shadow-card);transition:all .2s;display:flex;flex-direction:column;}
+.prop-card:hover{border-color:var(--pink);box-shadow:var(--shadow-hover);transform:translateY(-3px);}
+.prop-photo{position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,#efe3ec,#f7ecf4);overflow:hidden;}
+.prop-photo img{width:100%;height:100%;object-fit:cover;}
+.prop-photo .overlay{position:absolute;inset:0;background:rgba(26,26,46,0.16);}
+.prop-badge{position:absolute;top:13px;left:13px;font-family:var(--sans);font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:6px 11px;border-radius:6px;z-index:2;}
+.badge-leader{background:var(--navy);color:var(--pink);}
+.badge-budget{background:var(--pink);color:var(--navy);}
+.badge-wild{background:var(--cream);color:var(--gold);border:1px solid var(--gold);}
+.prop-body{padding:20px;flex:1;display:flex;flex-direction:column;}
+.prop-addr{font-family:var(--sans);font-weight:600;font-size:0.96rem;color:var(--navy);}
+.prop-type{font-size:0.8rem;color:var(--mid);line-height:1.45;margin:6px 0 12px;flex:1;}
+.prop-price{font-family:var(--serif);font-weight:700;font-size:1.7rem;color:var(--pink-deep);}
+.prop-meta{font-size:0.76rem;color:var(--mid);margin-top:4px;}
+.prop-score{font-family:var(--sans);font-weight:700;font-size:0.78rem;color:var(--navy);margin:14px 0;letter-spacing:0.04em;}
+.prop-score .sc-num{color:var(--teal);}
+.ph-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:repeating-linear-gradient(45deg,#f3e6ef,#f3e6ef 11px,#efe0eb 11px,#efe0eb 22px);}
+.ph-placeholder .pl-ic{font-size:1.5rem;opacity:0.5;}
+.ph-placeholder .pl-tx{font-family:'DM Mono','Courier New',monospace;font-size:0.66rem;letter-spacing:0.04em;color:var(--mid);text-align:center;padding:0 16px;line-height:1.5;}
+
+/* tour detail */
+.tour-detail{margin-top:30px;}
+.tour-hero{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:21/9;background:#efe3ec;}
+.tour-hero img{width:100%;height:100%;object-fit:cover;}
+.tour-hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,26,46,0.1),rgba(26,26,46,0.55));}
+.tour-hero .th-content{position:absolute;left:0;right:0;bottom:0;padding:30px 34px;color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;z-index:2;}
+.tour-hero .th-label{font-family:var(--sans);font-weight:700;font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--pink);}
+.tour-hero .th-name{font-family:var(--serif);font-weight:700;font-size:2.2rem;line-height:1.05;margin-top:6px;}
+.tour-hero .th-price{font-family:var(--serif);font-weight:700;font-size:2.2rem;color:var(--pink);white-space:nowrap;}
+.tour-specs{display:flex;gap:24px;flex-wrap:wrap;margin:22px 0;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.tour-specs .ts{font-size:0.84rem;color:var(--mid);}
+.tour-specs .ts b{font-family:var(--serif);font-size:1.15rem;color:var(--navy);font-weight:600;display:block;}
+.tour-atmos{font-family:var(--serif);font-style:italic;font-size:1.22rem;color:var(--charcoal);line-height:1.6;max-width:62ch;margin-bottom:26px;}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:30px;}
+.match-col h4{font-family:var(--sans);font-weight:600;font-size:0.92rem;color:var(--navy);margin-bottom:14px;}
+.match-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;}
+.match-list li{font-size:0.88rem;display:flex;align-items:center;gap:10px;}
+.match-list.has li{color:var(--charcoal);}
+.match-list.has .mk{color:var(--teal);font-weight:700;}
+.match-list.missing li{color:#b3a7ad;}
+.match-list.missing .mk{color:#cdbcc6;}
+.score-box{background:var(--blush);border-radius:13px;padding:24px 26px;}
+.score-box h4{font-family:var(--sans);font-weight:600;font-size:1rem;color:var(--navy);margin-bottom:18px;}
+.score-dim{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid rgba(254,149,208,0.25);}
+.score-dim .sd-l{font-size:0.9rem;color:var(--charcoal);font-weight:500;}
+.stars{display:flex;gap:4px;}
+.star{font-size:1.35rem;color:rgba(254,149,208,0.3);cursor:pointer;transition:color .12s,transform .12s;line-height:1;}
+.star:hover{transform:scale(1.15);}
+.star.on{color:var(--pink);}
+.score-total{display:flex;justify-content:flex-end;align-items:baseline;gap:10px;margin-top:16px;padding-top:16px;border-top:2px solid var(--pink);}
+.score-total .stl{font-family:var(--sans);font-weight:700;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);}
+.score-total .stv{font-family:var(--serif);font-weight:700;font-size:1.9rem;color:var(--pink-deep);}
+
+/* podium */
+.podium{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:18px;align-items:end;max-width:840px;margin:34px auto 0;}
+.podium-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center;box-shadow:var(--shadow-card);}
+.podium-card.top{border:2px solid var(--pink);box-shadow:var(--shadow-hover);padding-top:34px;position:relative;}
+.podium-card.top .crown{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--pink);color:var(--navy);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.podium-card .pc-rank{font-family:var(--sans);font-weight:700;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);}
+.podium-card.top .pc-rank{color:var(--pink-deep);}
+.podium-card .pc-name{font-family:var(--serif);font-weight:600;font-size:1.15rem;color:var(--navy);margin:8px 0;line-height:1.2;}
+.podium-card .pc-score{font-family:var(--serif);font-weight:700;font-size:1.7rem;color:var(--pink-deep);}
+
+/* dev visualizer */
+.dev-panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px;margin-top:30px;box-shadow:var(--shadow-card);}
+.dev-toggles{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 22px;}
+.dev-toggle{padding:11px 16px;border:1.5px solid var(--line);border-radius:9px;background:#fff;font-size:0.84rem;font-weight:600;color:var(--charcoal);transition:all .16s;display:flex;align-items:center;gap:8px;}
+.dev-toggle:hover{border-color:var(--teal);}
+.dev-toggle.sel{background:var(--teal);border-color:var(--teal);color:#fff;}
+.dev-content{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;}
+.dev-img{aspect-ratio:16/10;border-radius:11px;overflow:hidden;position:relative;background:#efe3ec;}
+.dev-stats .ds-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:0.88rem;}
+.dev-stats .ds-row .k{color:var(--mid);}
+.dev-stats .ds-row .v{font-weight:600;color:var(--navy);}
+
+/* $11M assemblage */
+.assemblage{background:var(--navy);border:2px solid var(--gold);border-radius:16px;padding:34px;margin-top:34px;color:#fff;position:relative;overflow:hidden;}
+.assemblage .am-badge{display:inline-block;font-family:var(--sans);font-weight:700;font-size:0.64rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);border-radius:20px;padding:6px 14px;margin-bottom:16px;}
+.assemblage .am-name{font-family:var(--serif);font-weight:700;font-size:2rem;line-height:1.1;}
+.assemblage .am-price{font-family:var(--serif);font-weight:700;font-size:2.4rem;color:var(--gold);margin:8px 0 18px;}
+.assemblage .am-highlights{display:flex;flex-wrap:wrap;gap:10px 26px;margin-bottom:22px;}
+.assemblage .am-highlights .hl{font-size:0.84rem;color:rgba(255,255,255,0.82);display:flex;align-items:center;gap:8px;}
+.assemblage .am-highlights .hl::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);}
+.lead-form{margin-top:20px;background:rgba(255,255,255,0.06);border-radius:12px;padding:24px;display:none;}
+.lead-form.show{display:block;}
+.lead-form .lf-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.lead-form input,.lead-form select{width:100%;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.05);color:#fff;font-size:0.9rem;}
+.lead-form input::placeholder{color:rgba(255,255,255,0.4);}
+.lead-form input:focus,.lead-form select:focus{outline:none;border-color:var(--gold);}
+
+/* ============================================================
+   MODULE 6: offer
+   ============================================================ */
+.offer-step{max-width:780px;margin:0 auto;}
+.offer-choose{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px;}
+.offer-choose .prop-card{cursor:pointer;}
+.offer-controls .step-q{font-family:var(--serif);font-weight:600;font-size:1.7rem;color:var(--navy);text-align:center;margin-bottom:6px;}
+.offer-slider-val{font-family:var(--serif);font-weight:700;font-size:2.6rem;color:var(--pink-deep);text-align:center;margin:14px 0 4px;}
+.offer-slider-sub{text-align:center;font-size:0.86rem;color:var(--mid);margin-bottom:18px;}
+.offer-summary{background:var(--cream);border:1.5px solid var(--gold);border-radius:16px;padding:34px;max-width:640px;margin:34px auto 0;box-shadow:0 14px 40px rgba(201,144,110,0.14);}
+.offer-summary h3{font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--navy);text-align:center;margin-bottom:6px;}
+.offer-summary .os-sub{text-align:center;font-size:0.74rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:22px;}
+.os-row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:0.94rem;}
+.os-row .k{color:var(--mid);}
+.os-row .v{font-weight:600;color:var(--navy);text-align:right;}
+textarea.note-input{width:100%;min-height:120px;padding:15px;border:1.5px solid var(--line);border-radius:10px;font-size:0.96rem;resize:vertical;color:var(--charcoal);}
+textarea.note-input:focus{outline:none;border-color:var(--pink);}
+
+/* ============================================================
+   INVESTOR PROFILE
+   ============================================================ */
+#screen-profile{background:var(--navy);min-height:100vh;padding:50px 0 70px;}
+.profile-doc{max-width:880px;margin:0 auto;background:var(--cream);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.4);}
+.profile-head{background:var(--navy);color:#fff;padding:40px 48px;border-bottom:3px solid var(--pink);display:flex;justify-content:space-between;align-items:center;gap:24px;}
+.profile-head .ph-eyebrow{font-family:var(--sans);font-weight:700;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);}
+.profile-head .ph-name{font-family:var(--serif);font-weight:700;font-size:2.6rem;line-height:1;margin:8px 0 6px;}
+.profile-head .ph-by{font-family:var(--serif);font-style:italic;font-size:0.95rem;color:var(--pale-pink);}
+.profile-body{padding:40px 48px;}
+.pf-section{margin-bottom:30px;}
+.pf-section > .pf-h{font-family:var(--sans);font-weight:700;font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--pink-deep);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--line);}
+.pf-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.pf-stat .k{font-size:0.72rem;color:var(--mid);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;}
+.pf-stat .v{font-family:var(--serif);font-size:1.3rem;color:var(--navy);margin-top:4px;line-height:1.2;}
+.pf-wants{display:flex;flex-wrap:wrap;gap:9px;}
+.pf-wants .w{background:#fff;border:1px solid var(--line);border-left:3px solid var(--pink);border-radius:7px;padding:9px 14px;font-size:0.86rem;color:var(--navy);font-weight:500;}
+.pf-grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.pf-rec{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;justify-content:space-between;align-items:center;gap:20px;}
+.pf-rec .pr-name{font-family:var(--serif);font-weight:600;font-size:1.3rem;color:var(--navy);}
+.pf-rec .pr-verdict{font-size:0.86rem;color:var(--mid);font-style:italic;margin-top:5px;max-width:46ch;}
+.pf-rec .pr-score{font-family:var(--serif);font-weight:700;font-size:2rem;color:var(--pink-deep);white-space:nowrap;}
+.pf-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;}
+.profile-foot{background:var(--navy);color:rgba(255,255,255,0.7);text-align:center;padding:22px;font-size:0.8rem;letter-spacing:0.04em;}
+.profile-foot a{color:var(--pink);text-decoration:none;}
+
+/* ---------- Responsive ---------- */
+@media(max-width:980px){
+  .wrap{padding:0 26px;}
+  .open-grid{grid-template-columns:1fr;}
+  .open-left{min-height:auto;padding:40px 34px;}
+  .open-right{padding:40px 34px;}
+  .open-headline{font-size:3rem;}
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-illus{display:none;}
+  .m1-grid,.m2-grid,.m3-grid,.match-grid,.dev-content,.dnd-grid{grid-template-columns:1fr;}
+  .floorplan-card{position:static;}
+  .prop-grid,.offer-choose,.strat-summary,.pf-3,.pf-grid6{grid-template-columns:1fr;}
+  .feature-list{grid-template-columns:1fr;}
+  .podium{grid-template-columns:1fr;}
+  .hero-title{font-size:2.2rem;}
+  .tour-hero .th-name,.tour-hero .th-price{font-size:1.5rem;}
+}
+@media(max-width:560px){
+  .wrap{padding:0 18px;}
+  .open-headline{font-size:2.4rem;}
+  .open-stats{gap:22px;}
+  #progress-header{min-width:0;padding:11px 14px;}
+  .hero-title{font-size:1.85rem;}
+  .charlotte{flex-direction:column;}
+  .charlotte .photo{width:64px;height:64px;}
+  .room-stage .room-title{font-size:1.6rem;}
+  .q-card .q-text{font-size:1.4rem;}
+  .lead-form .lf-grid{grid-template-columns:1fr;}
+}
+
+/* ---------- Print (Investor Profile) ---------- */
+@media print{
+  body{background:#fff;}
+  #progress-header,.no-print{display:none !important;}
+  #screen-profile{background:#fff;padding:0;}
+  .profile-doc{box-shadow:none;border-radius:0;max-width:100%;}
+  .pf-ctas{display:none !important;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== STICKY PROGRESS HEADER ===================== -->
+<header id="progress-header">
+  <div class="ph-label"><span id="ph-text">MODULE 1 OF 6</span><span class="pct" id="ph-pct">17%</span></div>
+  <div id="progress-track"><div id="progress-fill"></div></div>
+</header>
+
+<!-- ===================== OPENING SCREEN ===================== -->
+<section class="screen active" id="screen-open" data-screen-label="Opening">
+  <div class="open-grid">
+    <div class="open-left">
+      <svg class="rooflines" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="none" stroke="#FE95D0" stroke-width="2" opacity="0.5">
+          <path d="M-20 250 L120 150 L260 250" />
+          <path d="M200 360 L360 250 L520 360" />
+          <path d="M380 560 L520 460 L660 560" />
+          <path d="M-40 640 L120 530 L280 640" />
+        </g>
+        <g fill="none" stroke="#26A69A" stroke-width="2" opacity="0.45">
+          <path d="M60 470 L200 370 L340 470" />
+          <path d="M300 720 L460 610 L620 720" />
+        </g>
+      </svg>
+      <div class="ol-content brand-block">
+        <div class="sbp-stack">
+          <div class="glyph">
+            <svg width="78" height="50" viewBox="0 0 78 50" aria-hidden="true">
+              <path d="M6 30 L24 14 L42 30" fill="none" stroke="#FE95D0" stroke-width="3.4" stroke-linejoin="round"/>
+              <path d="M30 30 L52 11 L74 30" fill="none" stroke="#26A69A" stroke-width="3.4" stroke-linejoin="round"/>
+              <rect x="19" y="22" width="9" height="9" fill="#FE95D0" opacity="0.85"/>
+            </svg>
+          </div>
+          <div class="sbp-word">She Buys<br/>Properties</div>
+          <div class="sbp-sub">A Guided Investor Experience</div>
+        </div>
+      </div>
+      <p class="brand-quote">“The best deal isn't the one you love most. It's the one that <span class="em">lines up</span> with your numbers.”</p>
+      <div class="est">Est. 2026 — Hot Springs, Arkansas</div>
+    </div>
+
+    <div class="open-right">
+      <div class="or-top">
+        <div class="lockup">
+          <svg class="roofmark" width="40" height="28" viewBox="0 0 40 28" aria-hidden="true">
+            <path d="M3 18 L13 8 L23 18" fill="none" stroke="#FE95D0" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M17 18 L29 6 L40 18" fill="none" stroke="#26A69A" stroke-width="2.4" stroke-linejoin="round"/>
+          </svg>
+          <div class="mono"><span class="a">She Buys Properties</span><span class="b">Finding Your Investment</span></div>
+        </div>
+        <div class="or-tagline">A guided investor experience</div>
+      </div>
+
+      <div class="or-center">
+        <div class="eyebrow">She Buys Properties presents</div>
+        <h1 class="open-headline" style="margin-top:16px;">Finding Your<span class="em">Investment.</span></h1>
+        <p class="open-sub">Before you make an offer, get clear on what you actually want — and what you can confidently afford.</p>
+        <div class="open-stats">
+          <div class="stat"><div class="n">~15</div><div class="l">minutes, self-paced</div></div>
+          <div class="stat"><div class="n">6</div><div class="l">modules to work through</div></div>
+          <div class="stat"><div class="n">Yours</div><div class="l">a personal Investor Profile to take with you</div></div>
+        </div>
+        <div style="margin-top:38px;">
+          <button class="btn btn-primary btn-lg" onclick="goToModule(1)">Begin <span class="arrow">→</span></button>
+        </div>
+      </div>
+
+      <div class="or-bottom">
+        <div class="eyebrow gold">shebuysproperties.com</div>
+        <p class="welcome-note">Welcome. We're glad you're here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MODULE CONTAINERS (filled below) ===================== -->
+<!-- ===================== MODULE 1 ===================== -->
+<section class="screen module" id="screen-m1" data-screen-label="Module 1 — Who You Are">
+  <div class="hero-banner">
+    <svg class="rooflines" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="#FE95D0" stroke-width="2" opacity="0.5">
+        <path d="M820 230 L900 160 L980 230"/><path d="M960 250 L1060 170 L1160 250"/>
+      </g>
+      <g fill="none" stroke="#26A69A" stroke-width="2" opacity="0.4"><path d="M880 290 L980 215 L1080 290"/></g>
+    </svg>
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow on-dark mod-label">Module 01 — Investor Identity</div>
+        <h2 class="hero-title">What does your investment need to <span class="em">do</span> for you?</h2>
+        <p class="hero-sub">Most buyers confuse what they need from a deal with what they'd like. That confusion is what makes investing feel impossible. Let's sort it out first.</p>
+      </div>
+      <div class="hero-illus"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="m1-grid">
+      <!-- left: Charlotte + reaction -->
+      <div>
+        <div class="charlotte intro">
+          <img class="photo" src="assets/charlotte.avif" alt="Charlotte, She Buys Properties" />
+          <div class="c-body">
+            <div class="c-name">Charlotte — She Buys Properties</div>
+            <div class="c-tag">Charlotte, leaning in</div>
+            <p class="c-quote">A <em>need</em> is something non-negotiable — like cash flow from day one because you can't carry the property. A <em>want</em> is something nice, like a corner lot or high ceilings. Sort these honestly. The clarity you give me here saves us months.</p>
+          </div>
+        </div>
+        <div class="charlotte" id="m1-react" style="margin-top:18px;display:none;">
+          <img class="photo" src="assets/charlotte.avif" alt="Charlotte" />
+          <div class="c-body">
+            <div class="c-name">Charlotte — She Buys Properties</div>
+            <div class="c-tag">Charlotte's read</div>
+            <p class="c-quote" id="m1-react-text"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- right: intake -->
+      <div class="intake-card">
+        <div class="field">
+          <div class="f-num">01 · About You</div>
+          <div class="f-q">What should I call you?</div>
+          <input class="text-input" id="in-name" type="text" placeholder="Your first name" autocomplete="given-name" />
+        </div>
+        <div class="field">
+          <div class="f-num">02 · Your Goal</div>
+          <div class="f-q">What's driving this investment?</div>
+          <div class="opt-group" data-single="goal">
+            <button class="opt" data-val="Fix &amp; Flip for Profit">Fix &amp; Flip for Profit</button>
+            <button class="opt" data-val="Buy &amp; Hold for Rental Income">Buy &amp; Hold for Rental Income</button>
+            <button class="opt" data-val="Land / Development Play">Land / Development Play</button>
+            <button class="opt" data-val="First Investment — Still Figuring It Out">First Investment — Still Figuring It Out</button>
+          </div>
+        </div>
+        <div class="field">
+          <div class="f-num">03 · Risk Tolerance</div>
+          <div class="f-q">How do you feel about risk?</div>
+          <div class="risk-wrap">
+            <div class="risk-labels"><span>Conservative</span><span>Aggressive</span></div>
+            <input type="range" id="in-risk" min="1" max="5" step="1" value="3" />
+            <div class="risk-readout" id="risk-readout">Balanced</div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="f-num">04 · Timeline</div>
+          <div class="f-q">When do you want to be in a deal?</div>
+          <div class="opt-group" data-single="timeline">
+            <button class="opt" data-val="Within 3 months">Within 3 months</button>
+            <button class="opt" data-val="3–6 months">3–6 months</button>
+            <button class="opt" data-val="6–12 months">6–12 months</button>
+            <button class="opt" data-val="Just exploring">Just exploring</button>
+          </div>
+        </div>
+        <div class="field">
+          <div class="f-num">05 · Location Preference</div>
+          <div class="f-q">Any area preference within Hot Springs?</div>
+          <input class="text-input" id="in-location" type="text" placeholder="Neighborhood, zip, or 'anywhere'" />
+        </div>
+      </div>
+    </div>
+
+    <!-- drag and drop -->
+    <div class="dnd-section">
+      <div class="eyebrow">Sort Your Priorities</div>
+      <h3 class="section-title" style="margin-top:8px;">Drag each priority into the <span class="em">honest</span> column.</h3>
+      <p class="lead" style="margin-top:8px;max-width:60ch;">Don't overthink it. Where would each one really land if you had to choose?</p>
+      <div class="dnd-grid">
+        <div class="dnd-pool">
+          <h4>Investment Priorities</h4>
+          <div id="dnd-pool" class="zone-items"></div>
+        </div>
+        <div class="dnd-zones">
+          <div class="dnd-zone zone-must" data-zone="mustHave">
+            <div class="zone-head"><span class="zone-pill">Must Have</span><span class="zone-note">Non-negotiable</span></div>
+            <div class="zone-items"></div>
+          </div>
+          <div class="dnd-zone zone-like" data-zone="likeToHave">
+            <div class="zone-head"><span class="zone-pill">Like to Have</span><span class="zone-note">Worth more / open</span></div>
+            <div class="zone-items"></div>
+          </div>
+          <div class="dnd-zone zone-dont" data-zone="dontCare">
+            <div class="zone-head"><span class="zone-pill">Don't Care</span><span class="zone-note">Not part of search</span></div>
+            <div class="zone-items"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn btn-primary btn-lg" onclick="goToModule(2)">Next: What can you actually invest? <span class="arrow">→</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MODULE 2 ===================== -->
+<section class="screen module" id="screen-m2" data-screen-label="Module 2 — Your Numbers">
+  <div class="hero-banner">
+    <svg class="rooflines" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="#FE95D0" stroke-width="2" opacity="0.5"><path d="M840 240 L940 165 L1040 240"/><path d="M1000 250 L1100 175 L1200 250"/></g>
+    </svg>
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow on-dark mod-label">Module 02 — Your Numbers</div>
+        <h2 class="hero-title">The number that <span class="em">doesn't lie.</span></h2>
+        <p class="hero-sub">The bank tells you what you can borrow. That's not the same as what you can afford — or what makes the deal work.</p>
+      </div>
+      <div class="hero-illus"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="charlotte intro" style="margin-top:-34px;position:relative;z-index:5;">
+      <img class="photo" src="assets/charlotte.avif" alt="Charlotte" />
+      <div class="c-body">
+        <div class="c-name">Charlotte — She Buys Properties</div>
+        <div class="c-tag">Charlotte, on the numbers</div>
+        <p class="c-quote">Three honest numbers tell me almost everything: your <em>available capital</em>, your <em>comfortable monthly exposure</em>, and your <em>return target</em>. Move the sliders. I'll show you what a smart investment range looks like — and what stretched-too-thin looks like too.</p>
+      </div>
+    </div>
+
+    <div class="m2-grid">
+      <!-- sliders -->
+      <div>
+        <div class="slider-block">
+          <div class="sb-top"><span class="sb-label">🏦 Available investment capital</span><span class="sb-val" id="v-capital">$80,000</span></div>
+          <p class="sb-sub">Cash or financing capacity available for this purchase. This is your buying power.</p>
+          <input type="range" id="s-capital" min="20000" max="600000" step="5000" value="80000" />
+        </div>
+        <div class="slider-block">
+          <div class="sb-top"><span class="sb-label">📅 Monthly budget tolerance</span><span class="sb-val" id="v-monthly">$1,200</span></div>
+          <p class="sb-sub">Carrying costs you can absorb while the property is being prepped or tenanted.</p>
+          <input type="range" id="s-monthly" min="300" max="6000" step="50" value="1200" />
+        </div>
+        <div class="slider-block">
+          <div class="sb-top"><span class="sb-label">📈 Target annual ROI</span><span class="sb-val" id="v-roi">12%</span></div>
+          <p class="sb-sub">The return you want from this deal annually.</p>
+          <input type="range" id="s-roi" min="5" max="35" step="1" value="12" />
+        </div>
+
+        <div class="charlotte" id="m2-react" style="margin-top:30px;">
+          <img class="photo" src="assets/charlotte.avif" alt="Charlotte" />
+          <div class="c-body">
+            <div class="c-name">Charlotte — She Buys Properties</div>
+            <div class="c-tag">Charlotte's reaction</div>
+            <p class="c-quote" id="m2-react-text"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- live panel -->
+      <div class="live-panel">
+        <div class="lp-head"><span class="live-dot"></span><span class="lp-title">Your Numbers — Live</span></div>
+        <div class="range-card">
+          <div class="rc-label">Conservative Buy Range</div>
+          <div class="rc-val" id="rc-conservative">$200,000</div>
+          <div class="rc-note">Most conservative entry — 2.5× your capital. Built for buying meaningfully under market.</div>
+        </div>
+        <div class="range-card hot">
+          <div class="rc-label">Comfortable Buy Range</div>
+          <div class="rc-val" id="rc-comfortable">$180,000</div>
+          <div class="rc-note">Total housing payment at your 8% yield target. This is what fits your goals without overstretching.</div>
+          <div class="rc-implies" id="rc-implies">Implies a property price near $180,000</div>
+        </div>
+        <div class="range-card">
+          <div class="rc-label">Approval Ceiling</div>
+          <div class="rc-val" id="rc-ceiling">$400,000</div>
+          <div class="rc-note"><span class="gold">Even if the lender approves it, just because you CAN borrow this much doesn't mean you should.</span></div>
+        </div>
+        <button class="btn btn-pink" id="lock-budget" style="width:100%;justify-content:center;margin-top:8px;" onclick="lockBudget()">Lock My Budget <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn btn-primary btn-lg" onclick="goToModule(3)">Next: What do you want the property to have? <span class="arrow">→</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MODULE 3 ===================== -->
+<section class="screen module" id="screen-m3" data-screen-label="Module 3 — Property Wants">
+  <div class="hero-banner">
+    <svg class="rooflines" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="#FE95D0" stroke-width="2" opacity="0.5"><path d="M860 240 L960 165 L1060 240"/></g>
+      <g fill="none" stroke="#26A69A" stroke-width="2" opacity="0.4"><path d="M1000 255 L1100 180 L1200 255"/></g>
+    </svg>
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow on-dark mod-label">Module 03 — Property Wants Walk</div>
+        <h2 class="hero-title">Walk through a property, <span class="em">not a checklist.</span></h2>
+        <p class="hero-sub">We'll explore a home room by room. React to each feature. By the end, we'll know exactly what you're looking for.</p>
+      </div>
+      <div class="hero-illus"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="charlotte intro" style="margin-top:-34px;position:relative;z-index:5;">
+      <img class="photo" src="assets/charlotte.avif" alt="Charlotte" />
+      <div class="c-body">
+        <div class="c-name">Charlotte — She Buys Properties</div>
+        <div class="c-tag">Charlotte, walking you through</div>
+        <p class="c-quote">Here's how this works: in each room, I'll show you the space, then list three or four features you might find there. For each one, tell me if you'd <em>love it</em>, it's <em>nice</em>, or it honestly <em>doesn't matter.</em> Read, react, move on.</p>
+      </div>
+    </div>
+
+    <div class="m3-grid">
+      <!-- floor plan sidebar -->
+      <div class="floorplan-card">
+        <div class="you-here">You Are Here</div>
+        <svg id="floorplan" width="100%" viewBox="0 0 240 230" aria-hidden="true">
+          <!-- outer wall -->
+          <rect x="6" y="6" width="228" height="218" fill="none" stroke="#FFC8E8" stroke-width="2.5" rx="4"/>
+          <!-- rooms (filled dynamically) -->
+          <rect class="fp-room" data-room="0" x="8" y="8" width="86" height="64" rx="3"/>
+          <rect class="fp-room" data-room="1" x="96" y="8" width="136" height="92" rx="3"/>
+          <rect class="fp-room" data-room="2" x="8" y="74" width="86" height="92" rx="3"/>
+          <rect class="fp-room" data-room="3" x="96" y="102" width="136" height="64" rx="3"/>
+          <rect class="fp-room" data-room="4" x="8" y="168" width="224" height="54" rx="3"/>
+          <g font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#6B6B6B">
+            <text x="51" y="44" text-anchor="middle">Entry</text>
+            <text x="164" y="58" text-anchor="middle">Living</text>
+            <text x="51" y="124" text-anchor="middle">Kitchen</text>
+            <text x="164" y="138" text-anchor="middle">Primary</text>
+            <text x="120" y="199" text-anchor="middle">Outside / Lot</text>
+          </g>
+        </svg>
+        <ul class="room-list" id="room-list"></ul>
+      </div>
+
+      <!-- room stage -->
+      <div class="room-stage" id="room-stage"></div>
+    </div>
+
+    <!-- end summary -->
+    <div id="m3-summary" style="display:none;margin-top:40px;">
+      <div class="charlotte">
+        <img class="photo" src="assets/charlotte.avif" alt="Charlotte" />
+        <div class="c-body">
+          <div class="c-name">Charlotte — She Buys Properties</div>
+          <div class="c-tag">Charlotte, after walking with you</div>
+          <p class="c-quote" id="m3-summary-text"></p>
+        </div>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn-primary btn-lg" onclick="goToModule(4)">Next: Let's talk strategy. <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MODULE 4 ===================== -->
+<section class="screen module" id="screen-m4" data-screen-label="Module 4 — Strategy">
+  <div class="hero-banner">
+    <svg class="rooflines" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="#FE95D0" stroke-width="2" opacity="0.5"><path d="M880 245 L980 170 L1080 245"/></g>
+    </svg>
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow on-dark mod-label">Module 04 — Your Investment Strategy</div>
+        <h2 class="hero-title">Sit down with your <span class="em">consultant.</span></h2>
+        <p class="hero-sub">You've got the goals, the budget, the wants. Now we align on how to actually play this.</p>
+      </div>
+      <div class="hero-illus">
+        <svg width="230" height="150" viewBox="0 0 230 150" aria-hidden="true">
+          <g fill="none" stroke="#FE95D0" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M30 120 L30 78 Q30 70 38 70 L66 70 Q74 70 74 78 L74 120"/>
+            <path d="M30 92 L74 92"/><path d="M34 120 L34 134"/><path d="M70 120 L70 134"/>
+          </g>
+          <g fill="none" stroke="#26A69A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M156 120 L156 78 Q156 70 164 70 L192 70 Q200 70 200 78 L200 120"/>
+            <path d="M156 92 L200 92"/><path d="M160 120 L160 134"/><path d="M196 120 L196 134"/>
+          </g>
+          <circle cx="115" cy="56" r="6" fill="#C9906E"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="charlotte intro" style="margin-top:-34px;position:relative;z-index:5;">
+      <img class="photo" src="assets/charlotte.avif" alt="Charlotte" />
+      <div class="c-body">
+        <div class="c-name">Charlotte — She Buys Properties</div>
+        <div class="c-tag">Charlotte, getting strategic</div>
+        <p class="c-quote">Most investors think this conversation is about getting more information. It's not. It's about getting <em>aligned</em> — figuring out together how aggressive, how flexible, how fast we want to move. Your answers shape everything I'll recommend.</p>
+      </div>
+    </div>
+
+    <div class="dots" id="m4-dots"></div>
+    <div id="m4-question" class="q-card"></div>
+
+    <div class="charlotte" id="m4-react" style="max-width:760px;margin:24px auto 0;display:none;">
+      <img class="photo" src="assets/charlotte.avif" alt="Charlotte" />
+      <div class="c-body">
+        <div class="c-name">Charlotte — She Buys Properties</div>
+        <div class="c-tag">Charlotte's reaction</div>
+        <p class="c-quote" id="m4-react-text"></p>
+      </div>
+    </div>
+
+    <!-- summary -->
+    <div id="m4-summary" style="display:none;margin-top:18px;">
+      <h3 class="section-title" style="text-align:center;">Your <span class="em">strategy profile.</span></h3>
+      <div class="strat-summary" id="strat-grid"></div>
+      <div class="charlotte" style="max-width:820px;margin:28px auto 0;">
+        <img class="photo" src="assets/charlotte.avif" alt="Charlotte" />
+        <div class="c-body">
+          <div class="c-name">Charlotte — She Buys Properties</div>
+          <div class="c-tag">Charlotte, lining it up</div>
+          <p class="c-quote" id="m4-summary-text"></p>
+        </div>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn-primary btn-lg" onclick="goToModule(5)">Next: I've pulled three properties for you. <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MODULE 5 ===================== -->
+<section class="screen module" id="screen-m5" data-screen-label="Module 5 — Tour the Properties">
+  <div class="hero-banner">
+    <svg class="rooflines" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="#FE95D0" stroke-width="2" opacity="0.5"><path d="M820 240 L900 170 L980 240"/><path d="M1000 250 L1100 175 L1200 250"/></g>
+      <g fill="none" stroke="#26A69A" stroke-width="2" opacity="0.4"><path d="M900 295 L1000 220 L1100 295"/></g>
+    </svg>
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow on-dark mod-label">Module 05 — Tour the Properties</div>
+        <h2 class="hero-title">Three properties. <span class="em">One real decision.</span></h2>
+        <p class="hero-sub">All three fit inside your range — but they pull in different directions. Tour each one before you decide.</p>
+      </div>
+      <div class="hero-illus"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- OVERVIEW -->
+    <div id="m5-overview">
+      <div class="charlotte intro" style="margin-top:-34px;position:relative;z-index:5;">
+        <img class="photo" src="assets/charlotte.avif" alt="Charlotte" />
+        <div class="c-body">
+          <div class="c-name">Charlotte — She Buys Properties</div>
+          <div class="c-tag">Charlotte's take</div>
+          <p class="c-quote" id="m5-intro-text">I pulled three properties that all fit within your range, but pull in different directions. <span class="fact">101 Cedarwood</span> hits your wants list hardest. <span class="fact">306 Ramble Street</span> lives comfortably in your budget. The <span class="fact">10.22± Acres Assemblage</span> is the wildcard — see what you think. Tour each one before you decide.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:34px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div class="eyebrow">Curated For You</div>
+          <h3 class="section-title" style="margin-top:6px;">Three properties, <span class="em">one decision.</span></h3>
+        </div>
+        <div class="tour-counter"><span id="toured-count">0</span> of 3 toured</div>
+      </div>
+
+      <div class="prop-grid" id="prop-overview"></div>
+
+      <!-- results podium -->
+      <div id="m5-results" style="display:none;margin-top:50px;">
+        <h3 class="section-title" id="results-title" style="text-align:center;font-size:2.1rem;"></h3>
+        <p class="lead" id="results-sub" style="text-align:center;max-width:60ch;margin:10px auto 0;"></p>
+        <div class="podium" id="podium"></div>
+        <div class="charlotte" style="margin-top:34px;">
+          <img class="photo" src="assets/charlotte.avif" alt="Charlotte" />
+          <div class="c-body">
+            <div class="c-name">Charlotte — She Buys Properties</div>
+            <div class="c-tag">Charlotte, after the tours</div>
+            <p class="c-quote" id="results-charlotte"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- dev visualizer -->
+      <div class="dev-panel" id="dev-visualizer" style="display:none;">
+        <div class="eyebrow gold">Development Potential — 10.22± Acres Assemblage</div>
+        <h3 class="section-title" style="margin-top:6px;">What could be <span class="em">built here?</span></h3>
+        <div class="dev-toggles" id="dev-toggles"></div>
+        <div class="dev-content">
+          <div class="dev-img" id="dev-img">
+            <div class="ph-placeholder"><span class="pl-ic">▦</span><span class="pl-tx" id="dev-img-label">UPLOAD: concept rendering</span></div>
+          </div>
+          <div>
+            <div class="dev-stats" id="dev-stats"></div>
+            <p class="lead" id="dev-take" style="margin-top:16px;font-style:italic;color:var(--teal-deep);"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- $11M assemblage -->
+      <div class="assemblage" id="assemblage" style="display:none;">
+        <span class="am-badge">Featured Investment Opportunity</span>
+        <div class="am-name">10.22± Acres Assemblage — Central Avenue Corridor</div>
+        <div class="am-price">$11,000,000</div>
+        <div class="am-highlights">
+          <span class="hl">6 contiguous parcels</span>
+          <span class="hl">±25,000 VPD traffic exposure</span>
+          <span class="hl">Central Avenue frontage</span>
+          <span class="hl">Mixed-use / commercial zoning</span>
+          <span class="hl">Utilities established</span>
+        </div>
+        <button class="btn btn-ghost on-dark" id="assemblage-cta" onclick="toggleLeadForm()">Access Investment Details <span class="arrow">→</span></button>
+        <form class="lead-form" id="lead-form" onsubmit="submitLead(event)">
+          <div class="lf-grid">
+            <input type="text" placeholder="First name" required />
+            <input type="text" placeholder="Last name" required />
+            <input type="tel" placeholder="Contact number" required />
+            <input type="email" placeholder="Email" required />
+          </div>
+          <select required style="margin-bottom:14px;">
+            <option value="" disabled selected>What industry are you in?</option>
+            <option>Real estate / development</option><option>Retail / commercial</option>
+            <option>Hospitality</option><option>Healthcare</option><option>Finance / investment</option><option>Other</option>
+          </select>
+          <button type="submit" class="btn btn-pink" style="width:100%;justify-content:center;">Get Investment Details</button>
+        </form>
+        <div id="lead-thanks" style="display:none;margin-top:18px;color:var(--gold);font-style:italic;font-family:var(--serif);font-size:1.1rem;"></div>
+      </div>
+
+      <div class="cta-row" id="m5-cta" style="display:none;">
+        <button class="btn btn-primary btn-lg" onclick="goToModule(6)">Next: Now we write the offer. <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <!-- DETAIL (single property tour, rendered by JS) -->
+    <div id="m5-detail" class="tour-detail" style="display:none;"></div>
+  </div>
+</section>
+
+<!-- ===================== MODULE 6 ===================== -->
+<section class="screen module" id="screen-m6" data-screen-label="Module 6 — The Offer">
+  <div class="hero-banner">
+    <svg class="rooflines" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="#FE95D0" stroke-width="2" opacity="0.5"><path d="M870 245 L970 170 L1070 245"/></g>
+    </svg>
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow on-dark mod-label">Module 06 — The Offer Decision</div>
+        <h2 class="hero-title">Now we <span class="em">write it.</span></h2>
+        <p class="hero-sub">You've done the work — the goals, the budget, the strategy, the properties. Now we put it on paper.</p>
+      </div>
+      <div class="hero-illus">
+        <svg width="200" height="150" viewBox="0 0 200 150" aria-hidden="true">
+          <rect x="46" y="20" width="84" height="108" rx="5" fill="none" stroke="#FE95D0" stroke-width="2.4"/>
+          <g stroke="#FFD6EF" stroke-width="2" stroke-linecap="round"><path d="M60 44 H116"/><path d="M60 58 H116"/><path d="M60 72 H104"/><path d="M60 86 H116"/></g>
+          <path d="M120 96 L150 66 L162 78 L132 108 L116 112 Z" fill="#1A1A2E" stroke="#C9906E" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M150 66 L162 78" stroke="#C9906E" stroke-width="2.4"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="charlotte intro" style="margin-top:-34px;position:relative;z-index:5;">
+      <img class="photo" src="assets/charlotte.avif" alt="Charlotte" />
+      <div class="c-body">
+        <div class="c-name">Charlotte — She Buys Properties</div>
+        <div class="c-tag">Charlotte, ready to move</div>
+        <p class="c-quote" id="m6-intro-text">Here's where everything you've built starts to matter. Pick the property you want to write on — then we'll go through <em>six decisions</em> together. Each one shapes your offer. You won't be wrong — you'll just be making the choices that define how you compete for this investment.</p>
+      </div>
+    </div>
+
+    <!-- STEP 1: choose -->
+    <div id="m6-choose" style="margin-top:34px;">
+      <div class="eyebrow">Step 01 — Choose</div>
+      <h3 class="section-title" style="margin-top:6px;">Which property are we <span class="em">writing on?</span></h3>
+      <div class="offer-choose" id="offer-choose"></div>
+    </div>
+
+    <!-- STEPS 2-6: builder (rendered by JS once a property is chosen) -->
+    <div id="m6-builder" style="display:none;margin-top:34px;"></div>
+
+    <!-- offer summary -->
+    <div id="m6-summary" style="display:none;"></div>
+  </div>
+</section>
+
+<!-- ===================== INVESTOR PROFILE ===================== -->
+<section class="screen" id="screen-profile" data-screen-label="Investor Profile">
+  <div class="wrap" style="max-width:920px;">
+    <div class="profile-doc" id="profile-doc"></div>
+  </div>
+</section>
+
+
+<script>
+/* ============================================================
+   STATE
+   ============================================================ */
+const learnerProfile = {
+  name:'', goal:'', risk:3, riskLabel:'Balanced', timeline:'', locationPref:'',
+  priorities:{mustHave:[],likeToHave:[],dontCare:[]},
+  capitalAvailable:80000, monthlyBudget:1200, targetROI:12,
+  conservative:0, comfortable:0, ceiling:0, suggestedBudget:0, highBudget:false, devFlag:false, budgetLocked:false,
+  wantsLoved:[], wantsNice:[], wantsDontCare:[],
+  strategy:{financing:'',exit:'',condition:'',bidding:'',inspection:'',dealBreaker:''},
+  scores:{}, toured:[], topPick:'', secondPick:'', thirdPick:'',
+  offer:{propId:'',price:0,earnest:'',earnestAmt:0,closing:'',contingencies:[],note:''}
+};
+let currentModule = 0;
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+const nm = () => learnerProfile.name ? learnerProfile.name : 'there';
+const RISK_LABELS = ['Very conservative','Conservative','Balanced','Growth-minded','Aggressive'];
+
+function save(){ try{ localStorage.setItem('sbp_profile', JSON.stringify(learnerProfile)); localStorage.setItem('sbp_module', currentModule); }catch(e){} }
+
+/* ============================================================
+   NAVIGATION + PROGRESS
+   ============================================================ */
+function showScreen(id){
+  $$('.screen').forEach(s=>s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function updateProgress(n){
+  const hdr = $('#progress-header');
+  if(n>=1 && n<=6){
+    hdr.classList.add('show');
+    $('#ph-text').textContent = 'MODULE ' + n + ' OF 6';
+    const pct = Math.round(n/6*100);
+    $('#ph-pct').textContent = pct + '%';
+    $('#progress-fill').style.width = pct + '%';
+  } else if(n===7){
+    hdr.classList.add('show');
+    $('#ph-text').textContent = 'COMPLETE';
+    $('#ph-pct').textContent = '100%';
+    $('#progress-fill').style.width = '100%';
+  } else {
+    hdr.classList.remove('show');
+  }
+}
+function goToModule(n){
+  currentModule = n;
+  if(n===5) renderOverview();
+  if(n===6) renderChoose();
+  showScreen('screen-m'+n);
+  updateProgress(n);
+  save();
+}
+function goToProfile(){ currentModule=7; renderProfile(); showScreen('screen-profile'); updateProgress(7); save(); }
+
+/* ============================================================
+   MODULE 1 — INTAKE
+   ============================================================ */
+function initSingleSelects(){
+  $$('[data-single]').forEach(group=>{
+    const key = group.dataset.single;
+    group.querySelectorAll('.opt').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        group.querySelectorAll('.opt').forEach(b=>b.classList.remove('sel'));
+        btn.classList.add('sel');
+        const val = btn.dataset.val.replace(/&amp;/g,'&');
+        if(key==='goal'){ learnerProfile.goal = val; learnerProfile.devFlag = (val==='Land / Development Play'); updateM1React(); }
+        if(key==='timeline'){ learnerProfile.timeline = val; }
+        save();
+      });
+    });
+  });
+}
+const PRIORITIES = ['Below-market purchase price','High rental yield potential','Low maintenance / turnkey','Redevelopment or subdivision potential','Cash flow from day one','Long-term appreciation','Off-market / exclusive deal','Strong school district nearby'];
+const ZONE_ORDER = ['pool','mustHave','likeToHave','dontCare'];
+function makeChip(text){
+  const c = document.createElement('div');
+  c.className='chip'; c.draggable=true; c.dataset.item=text;
+  c.innerHTML = '<span class="grip">⠿</span><span>'+text+'</span>';
+  c.addEventListener('dragstart', e=>{ c.classList.add('dragging'); e.dataTransfer.setData('text/plain', text); });
+  c.addEventListener('dragend', ()=>c.classList.remove('dragging'));
+  c.addEventListener('click', ()=>cycleChip(c));
+  return c;
+}
+function currentZoneOf(chip){
+  const z = chip.closest('[data-zone]'); if(z) return z.dataset.zone;
+  return 'pool';
+}
+function cycleChip(chip){
+  const cur = currentZoneOf(chip);
+  const idx = ZONE_ORDER.indexOf(cur);
+  const next = ZONE_ORDER[(idx+1)%ZONE_ORDER.length];
+  placeChip(chip, next);
+}
+function placeChip(chip, zoneKey){
+  let target;
+  if(zoneKey==='pool') target = $('#dnd-pool');
+  else target = document.querySelector('[data-zone="'+zoneKey+'"] .zone-items');
+  target.appendChild(chip);
+  syncPriorities();
+}
+function initDnD(){
+  const pool = $('#dnd-pool');
+  PRIORITIES.forEach(p=>pool.appendChild(makeChip(p)));
+  const targets = [{el:pool,zone:'pool'}].concat($$('.dnd-zone').map(z=>({el:z,zone:z.dataset.zone})));
+  targets.forEach(t=>{
+    const dropEl = t.zone==='pool' ? pool : t.el;
+    dropEl.addEventListener('dragover', e=>{ e.preventDefault(); if(t.el.classList.contains('dnd-zone')) t.el.classList.add('over'); });
+    dropEl.addEventListener('dragleave', ()=>{ if(t.el.classList.contains('dnd-zone')) t.el.classList.remove('over'); });
+    dropEl.addEventListener('drop', e=>{
+      e.preventDefault();
+      if(t.el.classList.contains('dnd-zone')) t.el.classList.remove('over');
+      const text = e.dataTransfer.getData('text/plain');
+      const chip = $$('.chip').find(c=>c.dataset.item===text);
+      if(chip){ const container = t.zone==='pool' ? pool : t.el.querySelector('.zone-items'); container.appendChild(chip); syncPriorities(); }
+    });
+  });
+}
+function syncPriorities(){
+  ['mustHave','likeToHave','dontCare'].forEach(z=>{
+    learnerProfile.priorities[z] = $$('[data-zone="'+z+'"] .zone-items .chip').map(c=>c.dataset.item);
+  });
+  updateM1React();
+  save();
+}
+function updateM1React(){
+  const sorted = learnerProfile.priorities.mustHave.length + learnerProfile.priorities.likeToHave.length + learnerProfile.priorities.dontCare.length;
+  if(!learnerProfile.goal || sorted===0){ $('#m1-react').style.display='none'; return; }
+  let t='';
+  const g = learnerProfile.goal;
+  if(g==='Fix & Flip for Profit') t = '<span class="fact">'+nm()+'</span>, you\'re deal-hunting. We\'ll focus on <em>below-market buys</em> with strong ARV potential — properties where the spread between purchase and resale does the work.';
+  else if(g==='Buy & Hold for Rental Income') t = '<span class="fact">'+nm()+'</span>, yield and cash flow come first. The numbers have to work from <em>month one</em> — I won\'t show you anything that doesn\'t carry itself.';
+  else if(g==='Land / Development Play') t = '<span class="fact">'+nm()+'</span>, you\'re thinking big. Let me show you the <em>Central Avenue assemblage</em> — 10.22± acres of prime infill when we get there.';
+  else t = '<span class="fact">'+nm()+'</span>, smart to start clear-eyed. We\'ll start conservative and build your confidence with the <em>first deal</em> — then scale.';
+  $('#m1-react-text').innerHTML = t;
+  $('#m1-react').style.display='flex';
+}
+
+/* ============================================================
+   MODULE 2 — NUMBERS
+   ============================================================ */
+function recalcNumbers(){
+  const cap = +$('#s-capital').value, mo = +$('#s-monthly').value, roi = +$('#s-roi').value;
+  learnerProfile.capitalAvailable=cap; learnerProfile.monthlyBudget=mo; learnerProfile.targetROI=roi;
+  $('#v-capital').textContent = fmt(cap);
+  $('#v-monthly').textContent = fmt(mo);
+  $('#v-roi').textContent = roi + '%';
+  const conservative = cap*2.5, comfortable = (mo*12)/0.08, ceiling = cap*5;
+  learnerProfile.conservative=conservative; learnerProfile.comfortable=comfortable; learnerProfile.ceiling=ceiling;
+  learnerProfile.highBudget = ceiling >= 1000000;
+  $('#rc-conservative').textContent = fmt(conservative);
+  $('#rc-comfortable').textContent = fmt(comfortable);
+  $('#rc-implies').textContent = 'Implies a property price near ' + fmt(comfortable);
+  $('#rc-ceiling').textContent = fmt(ceiling);
+  let t='';
+  if(comfortable < 150000) t = 'This puts us squarely in the <span class="fact">306 Ramble Street</span> range — a good entry-level play with room to add value.';
+  else if(comfortable < 300000) t = 'The <span class="fact">101 Cedarwood</span> property sits right around this range — let\'s take a close look at what it offers.';
+  else t = 'You\'ve got serious buying power. The <span class="fact">Cedarwood</span> retreat is well within range — and at this level, the <em>Central Avenue assemblage</em> becomes worth a conversation.';
+  $('#m2-react-text').innerHTML = t;
+  save();
+}
+function lockBudget(){
+  learnerProfile.suggestedBudget = learnerProfile.comfortable;
+  learnerProfile.budgetLocked = true;
+  const b = $('#lock-budget');
+  b.classList.add('locked'); b.innerHTML = '✓ Budget Locked';
+  save();
+}
+
+/* ============================================================
+   MODULE 3 — WANTS WALK
+   ============================================================ */
+const ROOMS = [
+  {key:'entry', word:'entry', scene:'You pull into the driveway. The front walkway is clean. The door is solid. There\'s a covered porch wide enough for two chairs.',
+   features:[
+     {id:'porch',name:'Front porch',icon:'🏡',desc:'Covered space at the entry — curb presence and a place to sit.'},
+     {id:'foyer',name:'Entry foyer / drop zone',icon:'🚪',desc:'A transitional space to land keys, shoes, and bags.'},
+     {id:'curb',name:'Strong curb appeal',icon:'✨',desc:'The first impression — drives showings and resale.'},
+     {id:'garage',name:'Garage or dedicated parking',icon:'🚗',desc:'Covered or off-street parking that renters and buyers expect.'}
+   ]},
+  {key:'living', word:'living room', scene:'The main room opens up. It\'s bright. There\'s a focal wall, good light, and enough space to imagine furniture.',
+   features:[
+     {id:'openplan',name:'Open-concept floor plan',icon:'🔲',desc:'Connected living/dining — broad market appeal.'},
+     {id:'fireplace',name:'Working fireplace',icon:'🔥',desc:'A focal feature that lifts perceived value.'},
+     {id:'hardwood',name:'Hardwood floors',icon:'🪵',desc:'Durable, refinishable, premium to renters and buyers.'},
+     {id:'light',name:'Natural light / big windows',icon:'☀️',desc:'Light sells. Bright rooms photograph and show better.'}
+   ]},
+  {key:'kitchen', word:'kitchen', scene:'The kitchen faces the backyard. The counters are clear. The appliances are newer. The island has seating.',
+   features:[
+     {id:'island',name:'Kitchen island',icon:'🍳',desc:'Prep space and a gathering point — high on every list.'},
+     {id:'appliances',name:'Updated appliances',icon:'🧊',desc:'Newer units mean fewer near-term capital costs.'},
+     {id:'countertops',name:'Stone or quartz countertops',icon:'⬜',desc:'Durable surfaces that read as updated and premium.'},
+     {id:'openkitchen',name:'Open to the living room',icon:'↔️',desc:'Sightlines that make modest square footage feel larger.'}
+   ]},
+  {key:'primary', word:'primary bedroom', scene:'The primary is at the back. It\'s quiet. There\'s an attached bath and a closet you could actually use.',
+   features:[
+     {id:'suite',name:'Primary suite separation',icon:'🛏️',desc:'Owner\'s retreat set apart from secondary bedrooms.'},
+     {id:'closet',name:'Walk-in closet',icon:'👔',desc:'Storage that consistently ranks high with tenants.'},
+     {id:'ensuite',name:'Ensuite bathroom',icon:'🚿',desc:'A private attached bath — a near-universal expectation.'},
+     {id:'vanity',name:'Double vanity',icon:'🪞',desc:'Two sinks — a small upgrade with outsized appeal.'}
+   ]},
+  {key:'lot', word:'outside / lot', scene:'The yard goes back further than expected. There are two mature trees. The fence is solid.',
+   features:[
+     {id:'fence',name:'Fenced yard',icon:'🪵',desc:'Defined, secure outdoor space — pets, kids, privacy.'},
+     {id:'landscaping',name:'Mature landscaping',icon:'🌳',desc:'Established trees and beds that take years to grow in.'},
+     {id:'largelot',name:'Large lot (subdivision potential)',icon:'📐',desc:'Acreage that may carry development or split upside.'},
+     {id:'quiet',name:'Quiet / private location',icon:'🤫',desc:'Setting that protects long-term value and livability.'}
+   ]}
+];
+const FEATURE_NAME = {}; ROOMS.forEach(r=>r.features.forEach(f=>FEATURE_NAME[f.id]=f.name));
+let currentRoom = 0;
+const featureReactions = {}; // id -> 'love'|'nice'|'skip'
+
+function renderRoomList(){
+  const ul = $('#room-list'); ul.innerHTML='';
+  ROOMS.forEach((r,i)=>{
+    const li = document.createElement('li');
+    li.className = (i===currentRoom?'active':'') + (roomComplete(i)?' done':'');
+    li.innerHTML = '<span class="rl-dot"></span>' + r.word.replace(/\b\w/,c=>c.toUpperCase());
+    li.addEventListener('click', ()=>{ currentRoom=i; renderRoom(); });
+    ul.appendChild(li);
+  });
+  $$('#floorplan .fp-room').forEach((rect,i)=>{
+    rect.setAttribute('fill', i===currentRoom ? '#FE95D0' : (roomComplete(i)?'#B2DFDB':'#FEE8F5'));
+    rect.setAttribute('opacity', i===currentRoom?'0.9':'0.55');
+  });
+}
+function roomComplete(i){ return ROOMS[i].features.every(f=>featureReactions[f.id]); }
+function renderRoom(){
+  const r = ROOMS[currentRoom];
+  const isLast = currentRoom===ROOMS.length-1;
+  let html = '<div class="eyebrow">Room '+(currentRoom+1)+' of 5</div>';
+  html += '<h3 class="room-title">The <span class="em">'+r.word+'.</span></h3>';
+  html += '<p class="room-scene">'+r.scene+'</p>';
+  html += '<div class="feature-list">';
+  r.features.forEach(f=>{
+    const sel = featureReactions[f.id];
+    html += '<div class="feature-card">'
+      + '<div class="fc-icon">'+f.icon+'</div>'
+      + '<div class="fc-name">'+f.name+'</div>'
+      + '<div class="fc-desc">'+f.desc+'</div>'
+      + '<div class="react-row">'
+      + '<button class="react-btn love'+(sel==='love'?' sel':'')+'" onclick="reactFeature(\''+f.id+'\',\'love\')">♥ Love it</button>'
+      + '<button class="react-btn nice'+(sel==='nice'?' sel':'')+'" onclick="reactFeature(\''+f.id+'\',\'nice\')">= Nice</button>'
+      + '<button class="react-btn skip'+(sel==='skip'?' sel':'')+'" onclick="reactFeature(\''+f.id+'\',\'skip\')">× Doesn\'t matter</button>'
+      + '</div></div>';
+  });
+  html += '</div>';
+  html += '<div class="room-nav">';
+  html += currentRoom>0 ? '<button class="btn btn-ghost" onclick="prevRoom()">← Previous room</button>' : '<span></span>';
+  html += isLast ? '<button class="btn btn-pink" onclick="finishWalk()">Finish the walk <span class="arrow">→</span></button>'
+                 : '<button class="btn btn-primary" onclick="nextRoom()">Next room <span class="arrow">→</span></button>';
+  html += '</div>';
+  $('#room-stage').innerHTML = html;
+  renderRoomList();
+}
+function reactFeature(id, val){
+  featureReactions[id]=val; collectWants(); renderRoom(); save();
+}
+function collectWants(){
+  learnerProfile.wantsLoved=[]; learnerProfile.wantsNice=[]; learnerProfile.wantsDontCare=[];
+  Object.keys(featureReactions).forEach(id=>{
+    const v=featureReactions[id];
+    if(v==='love') learnerProfile.wantsLoved.push(id);
+    else if(v==='nice') learnerProfile.wantsNice.push(id);
+    else learnerProfile.wantsDontCare.push(id);
+  });
+}
+function nextRoom(){ if(currentRoom<ROOMS.length-1){currentRoom++; renderRoom();} }
+function prevRoom(){ if(currentRoom>0){currentRoom--; renderRoom();} }
+function finishWalk(){
+  collectWants();
+  const loved = learnerProfile.wantsLoved.map(id=>FEATURE_NAME[id]);
+  let read = '<span class="fact">'+nm()+'</span>, you loved <span class="fact">'+loved.length+'</span> feature'+(loved.length===1?'':'s')+'. ';
+  if(loved.length>=1){
+    const top = loved.slice(0,3).join(', ');
+    read += 'What stood out: <em>'+top+'</em>. ';
+  }
+  if(learnerProfile.wantsLoved.includes('largelot')||learnerProfile.wantsLoved.includes('quiet'))
+    read += 'You lean toward space and privacy — that points us toward the lot plays. ';
+  else if(learnerProfile.wantsLoved.includes('island')||learnerProfile.wantsLoved.includes('countertops')||learnerProfile.wantsLoved.includes('appliances'))
+    read += 'You value an updated, move-ready interior — that shapes which homes will score for you. ';
+  read += 'Let me show you which properties match hardest.';
+  $('#m3-summary-text').innerHTML = read;
+  $('#m3-summary').style.display='block';
+  $('#m3-summary').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+/* ============================================================
+   MODULE 4 — STRATEGY
+   ============================================================ */
+const QUESTIONS = [
+  {key:'financing', label:'Financing', text:'Have you secured financing — or should that be our first move together?',
+   options:['Already have it — cash or pre-approved','In progress — talked to a lender, no letter yet','Not yet — where do I start?'],
+   react:v=> v.startsWith('In progress') ? 'An incomplete pre-approval is worse than none in some ways — it can give false confidence. Let\'s get the <em>formal letter</em> in hand before we move. It usually takes a week.'
+         : v.startsWith('Already') ? 'Good. Cash or a clean pre-approval is leverage — sellers take you seriously and we can move <em>fast</em>.'
+         : 'No problem — that\'s our first step together. I\'ll connect you with a lender who closes in Garland County and we\'ll get you a <em>real number</em>.'},
+  {key:'exit', label:'Exit', text:'What\'s your primary exit strategy for this deal?',
+   options:['Flip for profit — buy, rehab, sell','Buy and hold — rental income','Develop or subdivide the land','Still deciding — open to the best play'],
+   react:v=> v.startsWith('Develop') ? 'Then the <em>Central Avenue assemblage</em> is exactly your lane — 10.22± acres where we\'ll weigh entitlement and timeline carefully.'
+         : v.startsWith('Flip') ? 'A flip lives or dies on the buy. We hunt the <em>spread</em> — purchase low enough that the rehab math always works.'
+         : v.startsWith('Buy') ? 'Hold it is. Then every property gets the <em>cash-flow test</em> first — appreciation is the bonus, not the plan.'
+         : 'Staying flexible is fine this early. I\'ll show you deals that work <em>more than one way</em>.'},
+  {key:'condition', label:'Condition', text:'How do you feel about properties that need work?',
+   options:['Love a project — comfortable with major rehab','Cosmetic only — paint, floors, fixtures','Move-in ready only — no surprises'],
+   react:v=> v.startsWith('Love') ? 'Then we can chase the <em>ugly-duckling</em> deals others skip — that\'s where the margin hides.'
+         : v.startsWith('Cosmetic') ? 'Smart middle ground. We target homes that need <em>lipstick, not surgery</em> — fast turns, controlled risk.'
+         : 'Move-in ready keeps your risk low. We\'ll pay a little more up front for <em>fewer surprises</em>.'},
+  {key:'bidding', label:'Bidding', text:'How competitive are you willing to be on price if you love a property?',
+   options:['List price only — I won\'t go over','Up to 3–5% over asking','Up to 10% over if it\'s the right deal','Best offer wins — I play to get it'],
+   react:v=> v.startsWith('Best') ? 'Aggressive — and I respect it. But we set a <em>ceiling</em> together so emotion never writes the check.'
+         : v.startsWith('List') ? 'Disciplined. In a hot pocket we may lose a few — but you\'ll never <em>overpay</em>.'
+         : 'A reasonable stretch. Enough to win the right deal without breaking the <em>math</em>.'},
+  {key:'inspection', label:'Inspection', text:'How important is an inspection contingency to you?',
+   options:['Non-negotiable — I always inspect','Preferred, but I can waive with conditions','I\'d waive it to win in a competitive situation','Depends on the property condition'],
+   react:v=> v.startsWith('Non') ? 'Good instinct. An inspection is cheap insurance against a <em>five-figure</em> surprise.'
+         : v.startsWith('I\'d waive') ? 'Waiving wins bids — but only waive what you can <em>afford to be wrong</em> about. We\'ll be selective.'
+         : 'Reasonable. We\'ll read each property and decide where the <em>real risk</em> sits.'},
+  {key:'dealBreaker', label:'Decision style', text:'What would make you walk away from a deal you otherwise love?',
+   options:['Bad inspection results','Price goes over my ceiling','Wrong location','Nothing — if I love it, I figure it out'],
+   react:v=> v.startsWith('Nothing') ? 'Conviction is good — but let\'s keep <em>one</em> hard line so a deal can\'t run away with you.'
+         : 'Clear. Knowing your <em>walk-away</em> line is what keeps you in control at the table.'}
+];
+let currentQ = 0;
+function renderDots(){
+  const d=$('#m4-dots'); d.innerHTML='';
+  QUESTIONS.forEach((q,i)=>{
+    const dot=document.createElement('span');
+    dot.className='dot'+(i<currentQ?' done':'')+(i===currentQ?' cur':'');
+    d.appendChild(dot);
+  });
+}
+function renderQuestion(){
+  if(currentQ>=QUESTIONS.length){ showStrategySummary(); return; }
+  const q=QUESTIONS[currentQ];
+  let html='<div class="q-step eyebrow">Question '+(currentQ+1)+' of 6 — '+q.label+'</div>';
+  html+='<h3 class="q-text">'+q.text+'</h3>';
+  html+='<div class="q-options">';
+  q.options.forEach(o=>{
+    const sel = learnerProfile.strategy[q.key]===o ? ' sel':'';
+    html+='<button class="q-opt'+sel+'" onclick="answerQ(\''+q.key+'\',this)">'+o.replace(/'/g,'&#39;')+'</button>';
+  });
+  html+='</div>';
+  $('#m4-question').innerHTML=html;
+  $('#m4-question').querySelectorAll('.q-opt').forEach((b,i)=>b.dataset.val=q.options[i]);
+  renderDots();
+  $('#m4-react').style.display='none';
+}
+function answerQ(key, btn){
+  const q=QUESTIONS[currentQ];
+  const val=btn.dataset.val;
+  learnerProfile.strategy[key]=val;
+  $('#m4-question').querySelectorAll('.q-opt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  $('#m4-react-text').innerHTML = q.react(val);
+  $('#m4-react').style.display='flex';
+  save();
+  setTimeout(()=>{
+    currentQ++;
+    if(currentQ>=QUESTIONS.length){ renderDots(); showStrategySummary(); }
+    else renderQuestion();
+  }, 1300);
+}
+function showStrategySummary(){
+  $('#m4-question').innerHTML='';
+  $('#m4-react').style.display='none';
+  renderDots();
+  const s=learnerProfile.strategy;
+  const cells=[
+    ['Financing', s.financing||'—'],['Timeline', learnerProfile.timeline||'—'],['Condition', s.condition||'—'],
+    ['Bidding', s.bidding||'—'],['Inspection', s.inspection||'—'],['Decision style', s.dealBreaker||'—']
+  ];
+  $('#strat-grid').innerHTML = cells.map(c=>'<div class="strat-cell"><div class="sc-k">'+c[0]+'</div><div class="sc-v">'+c[1]+'</div></div>').join('');
+  let t = '<span class="fact">'+nm()+'</span>, here\'s your strategy profile. ';
+  t += 'You\'re '+(s.financing?('<em>'+s.financing.split('—')[0].trim().toLowerCase()+'</em> on financing'):'still sorting financing')+', ';
+  t += 'your exit is <em>'+(s.exit?s.exit.split('—')[0].trim().toLowerCase():'open')+'</em>, ';
+  t += 'and on price you\'ll go <em>'+(s.bidding?s.bidding.toLowerCase():'carefully')+'</em>. ';
+  t += 'This is what I\'ll use to filter the three properties — and to guide the offer. The best deal isn\'t the most expensive or the most loved; it\'s the one that <em>lines up</em> with both.';
+  $('#m4-summary-text').innerHTML=t;
+  $('#m4-summary').style.display='block';
+  save();
+}
+
+/* ============================================================
+   MODULE 5 — TOUR
+   ============================================================ */
+const PROPERTIES = [
+  {id:'p1', n:1, label:'Home 01 · Investment Leader', badge:'Investment Leader', badgeClass:'badge-leader',
+   addr:'101 Cedarwood Street', city:'Hot Springs, AR 71901', price:325000,
+   type:'Spanish-Inspired Retreat with Courtyard Living & Timeless Character',
+   meta:'5 bed · 3 bath · Established neighborhood',
+   specs:[['5','Bedrooms'],['3','Bathrooms'],['Spanish','Style'],['Established','Neighborhood']],
+   atmos:'Stucco walls and arched doorways open onto a private courtyard. The character here is the asset — original tilework, a real fireplace, mature trees framing the lot. It photographs beautifully and rents to a tenant who wants something with soul.',
+   features:['porch','curb','garage','fireplace','hardwood','light','island','countertops','suite','closet','ensuite','vanity','landscaping','quiet'],
+   img:'assets/101-cedarwood.avif', imgLabel:'UPLOAD: 101 Cedarwood exterior / courtyard'},
+  {id:'p2', n:2, label:'Home 02 · Budget-Friendly', badge:'Budget-Friendly', badgeClass:'badge-budget',
+   addr:'306 Ramble Street', city:'Hot Springs, AR 71901', price:100000,
+   type:'Rustic Single-Family Home — 2 Bedrooms, 1.5 Bathrooms',
+   meta:'992 sq ft · Off-market · Wooded setting',
+   specs:[['2','Bedrooms'],['1.5','Bathrooms'],['992','Sq Ft'],['Off-market','Status']],
+   atmos:'Tucked into a wooded lot, this one is all about the buy price. The bones are honest — hardwood under the carpet, a covered porch, real privacy. It needs work, but at this number the math has room to breathe.',
+   features:['porch','hardwood','light','landscaping','fence','quiet'],
+   img:'assets/306-ramble.avif', imgLabel:'UPLOAD: 306 Ramble Street exterior'},
+  {id:'p3', n:3, label:'Home 03 · Wildcard', badge:'Wildcard — Land', badgeClass:'badge-wild',
+   addr:'10.22± Acres Assemblage', city:'Central Avenue Corridor · Hot Springs, AR', price:11000000,
+   type:'Prime Infill Redevelopment — 6 Contiguous Parcels on Central Avenue',
+   meta:'10.22± acres · 6 contiguous parcels · ±25,000 VPD frontage',
+   specs:[['10.22±','Acres'],['6','Parcels'],['±25,000','VPD Traffic'],['Mixed-Use','Zoning']],
+   atmos:'This isn\'t a house — it\'s one of Hot Springs\' largest infill opportunities. Six contiguous parcels unified along the city\'s primary commercial artery, with multiple entry and exit points for a flexible, phased development strategy. One lot already carries an existing structure (demo-ready), confirming established utilities and reducing speed-to-market. Zoning supports luxury hospitality, premier retail, or high-density mixed-use.',
+   features:['curb','light','landscaping','largelot','quiet'],
+   img:'assets/central-avenue.avif', imgLabel:'UPLOAD: Central Avenue assemblage aerial'}
+];
+const SCORE_DIMS=[['goals','Matches my goals'],['budget','Fits my budget'],['feel','Feels right for this investment'],['worth','Worth the price']];
+
+function propScore(id){
+  const s=learnerProfile.scores[id];
+  if(!s) return null;
+  return SCORE_DIMS.reduce((t,d)=>t+(s[d[0]]||0),0);
+}
+function wantsMatch(p){ return learnerProfile.wantsLoved.filter(id=>p.features.includes(id)).length; }
+
+function renderOverview(){
+  // intro personalization
+  const grid=$('#prop-overview'); grid.innerHTML='';
+  PROPERTIES.forEach(p=>{
+    const sc=propScore(p.id);
+    const card=document.createElement('div');
+    card.className='prop-card';
+    card.innerHTML =
+      '<div class="prop-photo"><div class="prop-badge '+p.badgeClass+'">'+p.badge+'</div>'
+      + photoMarkup(p)
+      + '<div class="overlay"></div></div>'
+      + '<div class="prop-body">'
+      + '<div class="prop-addr">'+p.addr+'</div>'
+      + '<div class="prop-type">'+p.type+'</div>'
+      + '<div class="prop-price">'+fmt(p.price)+'</div>'
+      + '<div class="prop-meta">'+p.meta+'</div>'
+      + '<div class="prop-score">YOUR SCORE: <span class="sc-num">'+(sc!==null?sc:'—')+'</span> / 20</div>'
+      + '<button class="btn '+(sc!==null?'btn-ghost':'btn-primary')+'" style="width:100%;justify-content:center;" onclick="openTour(\''+p.id+'\')">'+(sc!==null?'Re-tour':'Tour this property')+' <span class="arrow">→</span></button>'
+      + '</div>';
+    grid.appendChild(card);
+  });
+  $('#toured-count').textContent = learnerProfile.toured.length;
+  // assemblage condition
+  $('#assemblage').style.display = (learnerProfile.devFlag || learnerProfile.highBudget) ? 'block':'none';
+  if(learnerProfile.toured.length===3) computeResults();
+}
+function photoMarkup(p){
+  if(p.img) return '<img src="'+p.img+'" alt="'+p.addr+'" />';
+  return '<div class="ph-placeholder"><span class="pl-ic">🏠</span><span class="pl-tx">'+p.imgLabel+'</span></div>';
+}
+function openTour(id){
+  const p=PROPERTIES.find(x=>x.id===id);
+  const s=learnerProfile.scores[id]||{goals:0,budget:0,feel:0,worth:0};
+  const loved=learnerProfile.wantsLoved;
+  const has = loved.filter(f=>p.features.includes(f));
+  const missing = loved.filter(f=>!p.features.includes(f));
+  const isLand = p.id==='p3';
+  let html='';
+  html+='<div class="tour-hero"><div class="overlay"></div>'+ (function(){return p.img ? '<img src="'+p.img+'" alt="'+p.addr+'" />' : '<div class="ph-placeholder"><span class="pl-ic">🏠</span><span class="pl-tx">'+p.imgLabel+'</span></div>';})()
+      +'<div class="th-content"><div><div class="th-label">'+p.label+'</div><div class="th-name">'+p.addr+'</div></div><div class="th-price">'+fmt(p.price)+'</div></div></div>';
+  html+='<div class="tour-specs">'+p.specs.map(sp=>'<div class="ts"><b>'+sp[0]+'</b>'+sp[1]+'</div>').join('')+'</div>';
+  html+='<p class="tour-atmos">'+p.atmos+'</p>';
+  html+='<div class="match-grid">';
+  html+='<div class="match-col"><h4>From your wants list, this property has:</h4><ul class="match-list has">'
+      + (has.length?has.map(f=>'<li><span class="mk">✓</span>'+FEATURE_NAME[f]+'</li>').join(''):'<li style="color:#b3a7ad;">Tour Module 3 first to build your wants list.</li>')
+      + '</ul></div>';
+  html+='<div class="match-col"><h4>From your wants list, missing here:</h4><ul class="match-list missing">'
+      + (missing.length?missing.map(f=>'<li><span class="mk">×</span>'+FEATURE_NAME[f]+'</li>').join(''):'<li>Nothing you loved is missing.</li>')
+      + '</ul></div>';
+  html+='</div>';
+  // scoring
+  html+='<div class="score-box"><h4>Score this property</h4>';
+  SCORE_DIMS.forEach(d=>{
+    html+='<div class="score-dim"><span class="sd-l">'+d[1]+'</span><span class="stars" data-dim="'+d[0]+'">';
+    for(let i=1;i<=5;i++) html+='<span class="star'+((s[d[0]]||0)>=i?' on':'')+'" data-v="'+i+'">★</span>';
+    html+='</span></div>';
+  });
+  html+='<div class="score-total"><span class="stl">Your Score</span><span class="stv"><span id="tour-total">'+SCORE_DIMS.reduce((t,d)=>t+(s[d[0]]||0),0)+'</span> / 20</span></div>';
+  html+='</div>';
+  // charlotte reaction (filled after scoring)
+  html+='<div class="charlotte" id="tour-react" style="margin-top:24px;display:none;"><img class="photo" src="assets/charlotte.avif" alt="Charlotte"/><div class="c-body"><div class="c-name">Charlotte — She Buys Properties</div><div class="c-tag">Charlotte\'s take</div><p class="c-quote" id="tour-react-text"></p></div></div>';
+  // dev visualizer note for land
+  if(isLand) html+='<p class="lead" style="margin-top:18px;color:var(--teal-deep);font-style:italic;">Tip: once you\'ve scored this, the <b>Development Potential</b> tools unlock back on the overview.</p>';
+  // nav
+  const nextP = PROPERTIES.find(x=>!learnerProfile.toured.includes(x.id) && x.id!==id) || PROPERTIES[(p.n%3)];
+  html+='<div class="room-nav"><button class="btn btn-ghost" onclick="backToThree()">← Back to all three</button>'
+      + '<button class="btn btn-primary" onclick="openTour(\''+nextP.id+'\')">Tour '+nextP.label.split('·')[0].trim()+' <span class="arrow">→</span></button></div>';
+  $('#m5-detail').innerHTML=html;
+  $('#m5-overview').style.display='none';
+  $('#m5-detail').style.display='block';
+  // wire stars
+  $$('#m5-detail .stars').forEach(group=>{
+    const dim=group.dataset.dim;
+    group.querySelectorAll('.star').forEach(star=>{
+      star.addEventListener('click',()=>setStar(id,dim,+star.dataset.v));
+    });
+  });
+  if(propScore(id)!==null) updateTourReaction(p);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function setStar(id,dim,v){
+  if(!learnerProfile.scores[id]) learnerProfile.scores[id]={goals:0,budget:0,feel:0,worth:0};
+  learnerProfile.scores[id][dim]=v;
+  // update stars UI
+  const group=$('#m5-detail .stars[data-dim="'+dim+'"]');
+  group.querySelectorAll('.star').forEach(s=>s.classList.toggle('on', +s.dataset.v<=v));
+  const total=SCORE_DIMS.reduce((t,d)=>t+(learnerProfile.scores[id][d[0]]||0),0);
+  $('#tour-total').textContent=total;
+  // mark toured when all 4 rated
+  const allRated=SCORE_DIMS.every(d=>learnerProfile.scores[id][d[0]]>0);
+  if(allRated && !learnerProfile.toured.includes(id)) learnerProfile.toured.push(id);
+  const p=PROPERTIES.find(x=>x.id===id);
+  if(allRated) updateTourReaction(p);
+  save();
+}
+function updateTourReaction(p){
+  const total=propScore(p.id);
+  const over = p.price - (learnerProfile.comfortable||0);
+  let t='<span class="fact">'+nm()+'</span>, you scored this <span class="fact">'+total+' of 20</span>. ';
+  if(total>=16) t+='That\'s a strong fit — it\'s clearly resonating with what you told me you want. ';
+  else if(total>=11) t+='Solid, but not a runaway — there are trade-offs you\'re weighing, and that\'s healthy. ';
+  else t+='This one isn\'t landing for you, and that\'s useful information too. ';
+  if(learnerProfile.comfortable>0){
+    if(over>0) t+='Note: at <span class="fact">'+fmt(p.price)+'</span> it sits about <span class="fact">'+fmt(over)+'</span> above your comfortable range — roughly <span class="fact">'+fmt(over*0.0066)+'</span> more per month to carry. ';
+    else t+='And at <span class="fact">'+fmt(p.price)+'</span> it sits <em>comfortably inside</em> your range. ';
+  }
+  if(p.id==='p1') t+='The Cedarwood is the wants leader — it does the most for a tenant or buyer.';
+  else if(p.id==='p2') t+='Ramble Street is the value play — least cash in, most room in the math.';
+  else t+='The assemblage is the long game — you\'re buying optionality and scale, not a finished product.';
+  $('#tour-react-text').innerHTML=t;
+  $('#tour-react').style.display='flex';
+}
+function backToThree(){
+  $('#m5-detail').style.display='none';
+  $('#m5-overview').style.display='block';
+  renderOverview();
+  if(learnerProfile.toured.includes('p3')) $('#dev-visualizer').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function computeResults(){
+  const ranked=[...PROPERTIES].filter(p=>propScore(p.id)!==null)
+    .sort((a,b)=> (propScore(b.id)-propScore(a.id)) || (wantsMatch(b)-wantsMatch(a)));
+  if(ranked.length<3) return;
+  learnerProfile.topPick=ranked[0].id; learnerProfile.secondPick=ranked[1].id; learnerProfile.thirdPick=ranked[2].id;
+  const top=ranked[0];
+  $('#results-title').innerHTML = top.addr.split(' ').slice(1).join(' ').replace(/Street|Drive/,'')+' <span class="em">takes it.</span>';
+  $('#results-title').innerHTML = '<span class="em">'+top.addr+'</span> takes it.';
+  $('#results-sub').textContent = nm()+', you scored '+top.addr+' highest — '+propScore(top.id)+' of 20. But the score isn\'t the whole story. Here\'s what I noticed.';
+  // podium order: 2nd, 1st, 3rd
+  const order=[ranked[1],ranked[0],ranked[2]];
+  $('#podium').innerHTML = order.map((p,i)=>{
+    const isTop=p.id===top.id;
+    const rank = p.id===ranked[0].id?'Top Score':(p.id===ranked[1].id?'Second':'Third');
+    return '<div class="podium-card'+(isTop?' top':'')+'">'+(isTop?'<div class="crown">★</div>':'')
+      +'<div class="pc-rank">'+rank+'</div><div class="pc-name">'+p.addr+'</div><div class="pc-score">'+propScore(p.id)+' / 20</div></div>';
+  }).join('');
+  let t='<span class="fact">'+nm()+'</span>, your scores confirm what I suspected. <span class="fact">'+top.addr+'</span> led at <span class="fact">'+propScore(top.id)+' of 20</span>. ';
+  t+='It matched <span class="fact">'+wantsMatch(top)+'</span> of the features you loved. ';
+  if(top.price > learnerProfile.comfortable && learnerProfile.comfortable>0) t+='It\'s a stretch on budget — worth it only if the strategy holds. ';
+  else t+='And it sits inside the range you locked. ';
+  t+='Don\'t marry the score, though — let\'s carry all three into the offer step and write on the one that <em>lines up</em>.';
+  $('#results-charlotte').innerHTML=t;
+  $('#m5-results').style.display='block';
+  $('#m5-cta').style.display='flex';
+  if(learnerProfile.toured.includes('p3')) $('#dev-visualizer').style.display='block';
+}
+
+/* dev visualizer */
+const DEV_SCENARIOS=[
+  {key:'retail',label:'🏪 Retail / Aldi-Style',img:'UPLOAD: Aldi-style retail concept rendering',imgSrc:'assets/aldi.avif',
+   stats:[['Footprint','~18,000 sq ft'],['Timeline','12–18 months'],['Value range','$2.5M – $3.2M']],
+   take:'Grocery-anchored retail draws daily traffic. Lowest tenant risk, steady demand.'},
+  {key:'market',label:'🌿 Farmer\'s Market',img:'UPLOAD: open-air farmer\'s market concept',imgSrc:'assets/farmer-market.avif',
+   stats:[['Vendor stalls','40–60'],['Timeline','6–10 months'],['Value range','$1.4M – $1.9M']],
+   take:'Lighter build, community pull. Great interim use while you entitle the bigger play.'},
+  {key:'mixed',label:'🏢 Mixed-Use Community',img:'UPLOAD: mixed-use building concept',imgSrc:'assets/multi-use.avif',
+   stats:[['Units','24–36 + retail'],['Timeline','24–30 months'],['Value range','$5.5M – $7M']],
+   take:'Highest upside, highest complexity. Retail down, residential up — the corridor wants this.'},
+  {key:'resi',label:'🏘 Residential Subdivision',img:'UPLOAD: residential subdivision site plan',
+   stats:[['Lots','8–11 single-family'],['Timeline','14–20 months'],['Value range','$2.1M – $2.8M']],
+   take:'Subdivide and sell finished lots or build to rent. Cleanest path with these views.'}
+];
+function renderDevToggles(){
+  const wrap=$('#dev-toggles'); wrap.innerHTML='';
+  DEV_SCENARIOS.forEach((d,i)=>{
+    const b=document.createElement('button');
+    b.className='dev-toggle'+(i===0?' sel':'');
+    b.textContent=d.label;
+    b.addEventListener('click',()=>selectDev(i));
+    wrap.appendChild(b);
+  });
+  selectDev(0);
+}
+function selectDev(i){
+  $$('#dev-toggles .dev-toggle').forEach((b,j)=>b.classList.toggle('sel',i===j));
+  const d=DEV_SCENARIOS[i];
+  const di=$('#dev-img');
+  if(di) di.innerHTML = d.imgSrc ? '<img src="'+d.imgSrc+'" alt="'+d.label+'" style="width:100%;height:100%;object-fit:cover;" />'
+    : '<div class="ph-placeholder"><span class="pl-ic">▦</span><span class="pl-tx">'+d.img+'</span></div>';
+  $('#dev-stats').innerHTML=d.stats.map(s=>'<div class="ds-row"><span class="k">'+s[0]+'</span><span class="v">'+s[1]+'</span></div>').join('');
+  $('#dev-take').textContent='“'+d.take+'”';
+}
+function toggleLeadForm(){ $('#lead-form').classList.toggle('show'); }
+function submitLead(e){
+  e.preventDefault();
+  $('#lead-form').style.display='none';
+  $('#assemblage-cta').style.display='none';
+  const th=$('#lead-thanks');
+  th.style.display='block';
+  th.textContent='I\'ll have the full investment package in your inbox shortly, '+nm()+'. In the meantime, let\'s finish your offer strategy.';
+}
+
+/* ============================================================
+   MODULE 6 — OFFER
+   ============================================================ */
+function renderChoose(){
+  const wrap=$('#offer-choose'); wrap.innerHTML='';
+  PROPERTIES.forEach(p=>{
+    const sc=propScore(p.id);
+    const card=document.createElement('div');
+    card.className='prop-card';
+    card.innerHTML='<div class="prop-photo"><div class="prop-badge '+p.badgeClass+'">'+p.badge+'</div>'+photoMarkup(p)+'<div class="overlay"></div></div>'
+      +'<div class="prop-body"><div class="prop-addr">'+p.addr+'</div><div class="prop-price">'+fmt(p.price)+'</div>'
+      +'<div class="prop-score">YOUR SCORE: <span class="sc-num">'+(sc!==null?sc:'—')+'</span> / 20</div>'
+      +'<button class="btn btn-pink" style="width:100%;justify-content:center;" onclick="chooseOffer(\''+p.id+'\')">Write the offer <span class="arrow">→</span></button></div>';
+    wrap.appendChild(card);
+  });
+}
+function chooseOffer(id){
+  learnerProfile.offer.propId=id;
+  const p=PROPERTIES.find(x=>x.id===id);
+  learnerProfile.offer.price=p.price;
+  renderBuilder(p);
+  $('#m6-builder').style.display='block';
+  $('#offer-choose').querySelectorAll('.prop-card').forEach(c=>c.style.opacity='0.55');
+  $('#m6-builder').scrollIntoView({behavior:'smooth',block:'start'});
+  save();
+}
+function monthlyEst(price){ const r=0.07/12,n=360; return price*r/(1-Math.pow(1+r,-n)); }
+function renderBuilder(p){
+  const lo=Math.round(p.price*0.85/1000)*1000, hi=Math.round(p.price*1.15/1000)*1000;
+  learnerProfile.offer.price=learnerProfile.offer.price||p.price;
+  let html='';
+  html+='<div class="offer-step"><div class="eyebrow">Step 02 — Offer Price · '+p.addr+'</div>';
+  html+='<h3 class="step-q" style="margin-top:8px;">What are we <span class="italic-pink">offering?</span></h3>';
+  html+='<div class="offer-slider-val" id="offer-price-val">'+fmt(learnerProfile.offer.price)+'</div>';
+  html+='<div class="offer-slider-sub" id="offer-price-sub">Est. '+fmt(monthlyEst(learnerProfile.offer.price))+'/mo (P&I, 7% / 30yr)</div>';
+  html+='<input type="range" id="offer-price" min="'+lo+'" max="'+hi+'" step="1000" value="'+learnerProfile.offer.price+'" />';
+  html+='<div class="charlotte" style="margin-top:18px;"><img class="photo" src="assets/charlotte.avif" alt="Charlotte"/><div class="c-body"><div class="c-name">Charlotte — She Buys Properties</div><div class="c-tag">Charlotte, on price</div><p class="c-quote" id="offer-price-react"></p></div></div></div>';
+
+  // step 3 earnest
+  html+='<div class="offer-step" style="margin-top:40px;"><div class="eyebrow">Step 03 — Earnest Money</div>';
+  html+='<h3 class="step-q" style="margin-top:8px;">How much <span class="italic-pink">earnest money?</span></h3>';
+  html+='<div class="q-options" style="margin-top:18px;">'
+     + ['1% of offer','2% of offer','3% of offer'].map(o=>'<button class="q-opt" data-earn="'+o+'" onclick="setEarnest(this)">'+o+'</button>').join('')
+     + '</div><div id="earnest-amt" style="text-align:center;margin-top:14px;font-family:var(--serif);font-size:1.5rem;color:var(--pink-deep);"></div>';
+  html+='<div class="charlotte" style="margin-top:18px;"><img class="photo" src="assets/charlotte.avif" alt="Charlotte"/><div class="c-body"><div class="c-name">Charlotte — She Buys Properties</div><div class="c-tag">Charlotte, on signal</div><p class="c-quote" id="earnest-react">Earnest money is a signal. More money down tells the seller you\'re <em>serious and able</em> — it can matter as much as price in a tight call.</p></div></div></div>';
+
+  // step 4 closing
+  html+='<div class="offer-step" style="margin-top:40px;"><div class="eyebrow">Step 04 — Closing Timeline</div>';
+  html+='<h3 class="step-q" style="margin-top:8px;">When do you want to <span class="italic-pink">close?</span></h3>';
+  html+='<div class="q-options" style="margin-top:18px;">'
+     + ['14 days — fastest / cash','30 days — standard','45 days — flexible','Seller\'s preferred date'].map(o=>'<button class="q-opt" data-close="'+o.replace(/'/g,'&#39;')+'" onclick="setClosing(this)">'+o+'</button>').join('')
+     + '</div>';
+  html+='<div class="charlotte" style="margin-top:18px;"><img class="photo" src="assets/charlotte.avif" alt="Charlotte"/><div class="c-body"><div class="c-name">Charlotte — She Buys Properties</div><div class="c-tag">Charlotte, on timing</div><p class="c-quote" id="closing-react"></p></div></div></div>';
+
+  // step 5 contingencies
+  html+='<div class="offer-step" style="margin-top:40px;"><div class="eyebrow">Step 05 — Contingencies</div>';
+  html+='<h3 class="step-q" style="margin-top:8px;">Which contingencies are you <span class="italic-pink">including?</span></h3>';
+  html+='<div class="q-options" style="margin-top:18px;">'
+     + ['Inspection contingency','Financing contingency','Appraisal contingency','None — clean offer'].map(o=>'<button class="q-opt" data-cont="'+o+'" onclick="toggleCont(this)">'+o+'</button>').join('')
+     + '</div>';
+  html+='<div class="charlotte" style="margin-top:18px;"><img class="photo" src="assets/charlotte.avif" alt="Charlotte"/><div class="c-body"><div class="c-name">Charlotte — She Buys Properties</div><div class="c-tag">Charlotte, on protection</div><p class="c-quote" id="cont-react"></p></div></div></div>';
+
+  // step 6 note
+  html+='<div class="offer-step" style="margin-top:40px;"><div class="eyebrow">Step 06 — Personal Note</div>';
+  html+='<h3 class="step-q" style="margin-top:8px;">Add a personal note to the <span class="italic-pink">seller?</span></h3>';
+  html+='<textarea class="note-input" id="offer-note" placeholder="Tell them why you want this property, what you plan to do with it, and why you\'ll close smoothly." style="margin-top:16px;">'+(learnerProfile.offer.note||'')+'</textarea>';
+  html+='<div class="charlotte" style="margin-top:18px;"><img class="photo" src="assets/charlotte.avif" alt="Charlotte"/><div class="c-body"><div class="c-name">Charlotte — She Buys Properties</div><div class="c-tag">Charlotte, leveling with you</div><p class="c-quote">This matters more than most investors think. Sellers are human. A real paragraph here can <em>tip a close decision</em> your way.</p></div></div>';
+  html+='<div class="cta-row"><button class="btn btn-primary btn-lg" onclick="buildOfferSummary()">Review my offer <span class="arrow">→</span></button></div></div>';
+
+  $('#m6-builder').innerHTML=html;
+  // wire price slider
+  const ps=$('#offer-price');
+  ps.addEventListener('input',()=>{
+    learnerProfile.offer.price=+ps.value;
+    $('#offer-price-val').textContent=fmt(+ps.value);
+    $('#offer-price-sub').textContent='Est. '+fmt(monthlyEst(+ps.value))+'/mo (P&I, 7% / 30yr)';
+    updateOfferPriceReact(p); save();
+  });
+  $('#offer-note').addEventListener('input',e=>{ learnerProfile.offer.note=e.target.value; save(); });
+  updateOfferPriceReact(p);
+  // restore selections
+  if(learnerProfile.offer.earnest){ const b=$('#m6-builder [data-earn="'+learnerProfile.offer.earnest+'"]'); if(b){b.classList.add('sel'); setEarnest(b,true);} }
+  if(learnerProfile.offer.closing){ const b=$$('#m6-builder [data-close]').find(x=>x.dataset.close.replace(/&#39;/g,"'")===learnerProfile.offer.closing); if(b){b.classList.add('sel'); setClosing(b,true);} }
+  if(learnerProfile.offer.contingencies.length){ learnerProfile.offer.contingencies.forEach(c=>{const b=$('#m6-builder [data-cont="'+c+'"]'); if(b)b.classList.add('sel');}); updateContReact(); }
+}
+function updateOfferPriceReact(p){
+  const price=learnerProfile.offer.price, list=p.price;
+  let t;
+  if(price<list*0.99) t='This is a <em>motivated-buyer</em> play. Below list — we\'ll need a strong story and a clean offer to back it up.';
+  else if(price<=list*1.01) t='A clean offer at list. Gets taken <em>seriously</em> without overcommitting.';
+  else t='You\'re competing to <em>win</em>. Smart — if you\'ve done your homework and the after-value supports it.';
+  $('#offer-price-react').innerHTML=t;
+}
+function setEarnest(btn,silent){
+  $$('#m6-builder [data-earn]').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  const pct=parseInt(btn.dataset.earn)/100;
+  learnerProfile.offer.earnest=btn.dataset.earn;
+  learnerProfile.offer.earnestAmt=learnerProfile.offer.price*pct;
+  $('#earnest-amt').textContent=fmt(learnerProfile.offer.earnestAmt)+' down';
+  if(!silent) save();
+}
+function setClosing(btn,silent){
+  $$('#m6-builder [data-close]').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  const val=btn.dataset.close.replace(/&#39;/g,"'");
+  learnerProfile.offer.closing=val;
+  const fin=learnerProfile.strategy.financing||'';
+  let t;
+  if(val.startsWith('14')){ t = fin.startsWith('Already') ? 'With your financing ready, <em>14 days</em> is real leverage — few buyers can match it.' : 'A 14-day close is aggressive — we can only promise it once your <em>financing</em> is locked.'; }
+  else if(val.startsWith('30')) t='Thirty days is the market standard — <em>credible</em> and clean for most sellers.';
+  else if(val.startsWith('45')) t='Forty-five gives you room. Fine, as long as the seller isn\'t <em>racing the clock</em>.';
+  else t='Matching the seller\'s date is a quiet way to <em>win goodwill</em> — flexibility is a chip.';
+  $('#closing-react').innerHTML=t;
+  if(!silent) save();
+}
+function toggleCont(btn){
+  const val=btn.dataset.cont;
+  if(val.startsWith('None')){
+    $$('#m6-builder [data-cont]').forEach(b=>b.classList.remove('sel'));
+    btn.classList.add('sel');
+    learnerProfile.offer.contingencies=['None — clean offer'];
+  } else {
+    const none=$('#m6-builder [data-cont="None — clean offer"]'); if(none) none.classList.remove('sel');
+    btn.classList.toggle('sel');
+    learnerProfile.offer.contingencies=$$('#m6-builder [data-cont].sel').map(b=>b.dataset.cont);
+  }
+  updateContReact(); save();
+}
+function updateContReact(){
+  const ins=learnerProfile.strategy.inspection||'';
+  const has=learnerProfile.offer.contingencies;
+  let t;
+  if(has.includes('None — clean offer')) t='A clean offer is powerful — but you\'re trading <em>protection for speed</em>. Only do this when you know the property cold.';
+  else if(!has.includes('Inspection contingency') && ins.startsWith('Non')) t='Heads up — you told me inspection was <em>non-negotiable</em>, but it\'s not checked. Let\'s add it back.';
+  else t='Sensible coverage. These contingencies are your <em>exits</em> if something doesn\'t hold up.';
+  $('#cont-react').innerHTML=t;
+}
+function buildOfferSummary(){
+  const p=PROPERTIES.find(x=>x.id===learnerProfile.offer.propId);
+  const o=learnerProfile.offer;
+  let html='<div class="offer-summary"><div class="os-sub">Your Offer</div><h3>'+p.addr+'</h3>';
+  html+='<div class="os-row"><span class="k">List price</span><span class="v">'+fmt(p.price)+'</span></div>';
+  html+='<div class="os-row"><span class="k">Offer price</span><span class="v">'+fmt(o.price)+'</span></div>';
+  html+='<div class="os-row"><span class="k">Earnest money</span><span class="v">'+(o.earnest?o.earnest+' · '+fmt(o.earnestAmt):'—')+'</span></div>';
+  html+='<div class="os-row"><span class="k">Closing</span><span class="v">'+(o.closing||'—')+'</span></div>';
+  html+='<div class="os-row"><span class="k">Contingencies</span><span class="v">'+(o.contingencies.length?o.contingencies.map(c=>c.split(' ')[0]).join(', '):'—')+'</span></div>';
+  html+='<div class="os-row"><span class="k">Personal note</span><span class="v">'+(o.note&&o.note.trim()?'Included':'None')+'</span></div>';
+  html+='</div>';
+  // final read
+  html+='<div class="charlotte" style="max-width:640px;margin:26px auto 0;"><img class="photo" src="assets/charlotte.avif" alt="Charlotte"/><div class="c-body"><div class="c-name">Charlotte — She Buys Properties</div><div class="c-tag">Charlotte, ready to move</div><p class="c-quote">'+finalRead(p,o)+'</p></div></div>';
+  html+='<div class="cta-row" style="justify-content:center;"><button class="btn btn-pink btn-lg" onclick="goToProfile()">Complete the Experience <span class="arrow">→</span></button></div>';
+  $('#m6-summary').innerHTML=html;
+  $('#m6-summary').style.display='block';
+  $('#m6-summary').scrollIntoView({behavior:'smooth',block:'start'});
+  save();
+}
+function finalRead(p,o){
+  const goalShort = (learnerProfile.goal||'invest').split('—')[0].replace(/for Profit|for Rental Income/,'').trim().toLowerCase();
+  const comp = o.price<p.price*0.99?'a disciplined, below-list':(o.price<=p.price*1.01?'a clean, at-list':'an aggressive, above-list');
+  const strength = o.price<p.price*0.99?'reasonable':(o.price<=p.price*1.01?'strong':'bold');
+  let t='<span class="fact">'+nm()+'</span>, you came in looking to <em>'+goalShort+'</em>. ';
+  if(learnerProfile.ceiling) t+='Your approval ceiling was <span class="fact">'+fmt(learnerProfile.ceiling)+'</span>. ';
+  t+='You chose <span class="fact">'+p.addr+'</span> — '+(p.id==='p1'?'the wants leader':(p.id==='p2'?'the value play':'the development wildcard'))+'. ';
+  t+='At <span class="fact">'+fmt(o.price)+'</span>, that\'s '+comp+' offer. ';
+  t+='This is a <em>'+strength+'</em> offer. Get me the green light and we move on it before someone else does.';
+  return t;
+}
+
+/* ============================================================
+   INVESTOR PROFILE
+   ============================================================ */
+function renderProfile(){
+  const p=learnerProfile;
+  const topP=PROPERTIES.find(x=>x.id===(p.topPick||p.offer.propId)) || PROPERTIES[0];
+  const offerP=PROPERTIES.find(x=>x.id===p.offer.propId);
+  const lovedNames=p.wantsLoved.slice(0,5).map(id=>FEATURE_NAME[id]);
+  const s=p.strategy;
+  const stratCells=[['Financing',s.financing||'—'],['Timeline',p.timeline||'—'],['Condition',s.condition||'—'],['Bidding',s.bidding||'—'],['Inspection',s.inspection||'—'],['Decision',s.dealBreaker||'—']];
+  let html='';
+  html+='<div class="profile-head"><div><div class="ph-eyebrow">Investor Profile</div><div class="ph-name">'+(p.name||'Your')+'</div><div class="ph-by">Prepared by Charlotte — She Buys Properties</div></div>'
+      +'<svg width="56" height="40" viewBox="0 0 56 40" aria-hidden="true"><path d="M4 26 L18 12 L32 26" fill="none" stroke="#FE95D0" stroke-width="3" stroke-linejoin="round"/><path d="M24 26 L40 9 L54 26" fill="none" stroke="#26A69A" stroke-width="3" stroke-linejoin="round"/></svg></div>';
+  html+='<div class="profile-body">';
+  // stats
+  html+='<div class="pf-section"><div class="pf-3">'
+     + '<div class="pf-stat"><div class="k">Investor Type</div><div class="v">'+(p.goal||'—')+'</div></div>'
+     + '<div class="pf-stat"><div class="k">Risk Profile</div><div class="v">'+(p.riskLabel||'—')+'</div></div>'
+     + '<div class="pf-stat"><div class="k">Timeline</div><div class="v">'+(p.timeline||'—')+'</div></div>'
+     + '</div></div>';
+  // budget
+  html+='<div class="pf-section"><div class="pf-h">Budget Range</div><div class="pf-3">'
+     + '<div class="pf-stat"><div class="k">Conservative</div><div class="v">'+fmt(p.conservative)+'</div></div>'
+     + '<div class="pf-stat"><div class="k">Comfortable</div><div class="v">'+fmt(p.comfortable)+'</div></div>'
+     + '<div class="pf-stat"><div class="k">Approval Ceiling</div><div class="v">'+fmt(p.ceiling)+'</div></div>'
+     + '</div></div>';
+  // wants
+  html+='<div class="pf-section"><div class="pf-h">Top Property Wants</div><div class="pf-wants">'
+     + (lovedNames.length?lovedNames.map(n=>'<span class="w">'+n+'</span>').join(''):'<span class="w">No wants recorded</span>')
+     + '</div></div>';
+  // strategy
+  html+='<div class="pf-section"><div class="pf-h">Strategy Profile</div><div class="pf-grid6">'
+     + stratCells.map(c=>'<div class="strat-cell"><div class="sc-k">'+c[0]+'</div><div class="sc-v" style="font-size:1rem;">'+c[1]+'</div></div>').join('')
+     + '</div></div>';
+  // recommended
+  const recScore=propScore(topP.id);
+  html+='<div class="pf-section"><div class="pf-h">Recommended Property</div><div class="pf-rec"><div><div class="pr-name">'+topP.addr+' · '+fmt(topP.price)+'</div>'
+     + '<div class="pr-verdict">'+(topP.id==='p1'?'The wants leader — does the most for a tenant or resale.':(topP.id==='p2'?'The value play — least cash in, most room in the math.':'The development wildcard — buying optionality, not a finished product.'))+'</div></div>'
+     + '<div class="pr-score">'+(recScore!==null?recScore+' / 20':'—')+'</div></div></div>';
+  // offer summary
+  if(offerP){
+    const o=p.offer;
+    html+='<div class="pf-section"><div class="pf-h">Offer Summary</div>'
+      + '<div class="os-row"><span class="k">Property</span><span class="v">'+offerP.addr+'</span></div>'
+      + '<div class="os-row"><span class="k">Offer price</span><span class="v">'+fmt(o.price)+'</span></div>'
+      + '<div class="os-row"><span class="k">Earnest</span><span class="v">'+(o.earnest?o.earnest+' · '+fmt(o.earnestAmt):'—')+'</span></div>'
+      + '<div class="os-row"><span class="k">Closing</span><span class="v">'+(o.closing||'—')+'</span></div>'
+      + '<div class="os-row"><span class="k">Contingencies</span><span class="v">'+(o.contingencies.length?o.contingencies.map(c=>c.split(' ')[0]).join(', '):'—')+'</span></div>'
+      + '</div>';
+  }
+  // charlotte note
+  html+='<div class="pf-section"><div class="pf-h">Charlotte\'s Recommendation</div>'
+     + '<div class="charlotte"><img class="photo" src="assets/charlotte.avif" alt="Charlotte"/><div class="c-body"><div class="c-name">Charlotte — She Buys Properties</div><div class="c-tag">Your consultant</div>'
+     + '<p class="c-quote">'+profileNote(p,topP)+'</p></div></div></div>';
+  // CTAs
+  html+='<div class="pf-ctas no-print">'
+     + '<a class="btn btn-primary btn-lg" href="tel:+15016511790">📞 Schedule a Consultation</a>'
+     + '<button class="btn btn-ghost btn-lg" onclick="window.print()">⬇ Download Your Profile</button>'
+     + '<button class="btn btn-ghost btn-lg" onclick="goToModule(1)">Start over</button>'
+     + '</div>';
+  html+='</div>';
+  html+='<div class="profile-foot"><a href="https://shebuysproperties.com">shebuysproperties.com</a> &nbsp;·&nbsp; 501-651-1790 &nbsp;·&nbsp; Hot Springs, Arkansas</div>';
+  $('#profile-doc').innerHTML=html;
+}
+function profileNote(p,topP){
+  let t='<span class="fact">'+nm()+'</span>, you did the real work here — you got honest about your goals, your numbers, and your strategy before falling for a property. ';
+  t+='Based on everything, <span class="fact">'+topP.addr+'</span> is your strongest fit. ';
+  if(p.offer.propId && p.offer.propId!==topP.id) t+='You chose to write on '+PROPERTIES.find(x=>x.id===p.offer.propId).addr+' — also defensible, and I\'ll back the play. ';
+  t+='When you\'re ready to move, call me. We\'ll position the offer and get it in front of the seller before someone else does.';
+  return t;
+}
+
+/* ============================================================
+   INIT + RESTORE
+   ============================================================ */
+function restore(){
+  let saved; try{ saved=JSON.parse(localStorage.getItem('sbp_profile')); }catch(e){}
+  if(!saved) return null;
+  Object.assign(learnerProfile, saved);
+  // scalar fields
+  if(learnerProfile.name) $('#in-name').value=learnerProfile.name;
+  if(learnerProfile.locationPref) $('#in-location').value=learnerProfile.locationPref;
+  if(learnerProfile.goal){ const b=$('#screen-m1 [data-single="goal"] [data-val="'+learnerProfile.goal.replace(/&/g,'&amp;')+'"]'); if(b)b.classList.add('sel'); }
+  if(learnerProfile.timeline){ const b=$('#screen-m1 [data-single="timeline"] [data-val="'+learnerProfile.timeline+'"]'); if(b)b.classList.add('sel'); }
+  $('#in-risk').value=learnerProfile.risk; $('#risk-readout').textContent=RISK_LABELS[learnerProfile.risk-1];
+  $('#s-capital').value=learnerProfile.capitalAvailable; $('#s-monthly').value=learnerProfile.monthlyBudget; $('#s-roi').value=learnerProfile.targetROI;
+  // priorities placement
+  ['mustHave','likeToHave','dontCare'].forEach(z=>{
+    (learnerProfile.priorities[z]||[]).forEach(item=>{ const chip=$$('.chip').find(c=>c.dataset.item===item); if(chip) placeChip(chip,z); });
+  });
+  // wants
+  ['wantsLoved','wantsNice','wantsDontCare'].forEach(k=>{
+    const v=k==='wantsLoved'?'love':(k==='wantsNice'?'nice':'skip');
+    (learnerProfile[k]||[]).forEach(id=>featureReactions[id]=v);
+  });
+  if(learnerProfile.budgetLocked){ const b=$('#lock-budget'); b.classList.add('locked'); b.innerHTML='✓ Budget Locked'; }
+  updateM1React();
+  return saved;
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+  initSingleSelects();
+  initDnD();
+  renderRoom();
+  renderQuestion();
+  renderDevToggles();
+  // name + location
+  $('#in-name').addEventListener('input', e=>{ learnerProfile.name=e.target.value.trim(); updateM1React(); save(); });
+  $('#in-location').addEventListener('input', e=>{ learnerProfile.locationPref=e.target.value.trim(); save(); });
+  // risk
+  $('#in-risk').addEventListener('input', e=>{ learnerProfile.risk=+e.target.value; learnerProfile.riskLabel=RISK_LABELS[+e.target.value-1]; $('#risk-readout').textContent=learnerProfile.riskLabel; save(); });
+  // numbers
+  ['s-capital','s-monthly','s-roi'].forEach(id=>$('#'+id).addEventListener('input', recalcNumbers));
+  recalcNumbers();
+  // restore prior session
+  const had=restore();
+  if(had){
+    recalcNumbers(); renderRoom(); renderRoomList();
+    if(learnerProfile.strategy.financing){ currentQ=QUESTIONS.findIndex(q=>!learnerProfile.strategy[q.key]); if(currentQ<0){currentQ=QUESTIONS.length;} renderQuestion(); if(currentQ>=QUESTIONS.length) showStrategySummary(); }
+    let sm; try{ sm=+localStorage.getItem('sbp_module'); }catch(e){}
+    if(sm>=1 && sm<=6){ goToModule(sm); } else if(sm===7){ goToProfile(); }
+  }
+});
+</script>
+
+</body>
+</html>
